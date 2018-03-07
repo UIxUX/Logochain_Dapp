@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Account</title>
+  <meta name="description" content="Buy and Sell Logos on the Blockchain.">
+  <meta name="Logochain" content="Marketplace">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/customcss.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Navigationbar -->
+<nav class="navbar navbar-expand-lg transparentBackground">
+  <a class="navbar-brand" href="/">
+    <img src="img/logo.svg" width="150" height="26" class="d-inline-block align-top" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto ul-navbar" >
+      <li class="nav-item li-navbar">
+        <a class="nav-link signOutNavbar" href="#"><b>Front Page</b><span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active li-navbar"">
+      <a class="nav-link uploadButton" href="#">Upload <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item li-navbar">
+        <a class="nav-link signOutNavbar" href="#">Sign Out <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+<!-- Account Information Section -->
+<section>
+  <main id="accountContainer" class="lightShadow">
+    <div id="accountContainerHeader">
+      <h5 id="yourAccount" class="whiteText">Your Account</h5>
+      <button id="deleteAccountButton" class="whiteOutlinedButton btn round">Delete</button>
+      <h4 id="walletID" class="whiteText">0x87A0110eD1D09aF6568392e77CEDae95e5f3A574</h4>
+    </div>
+    <div id="accountContainerMain">
+      <ul id="accountContainerMainList">
+        <li id="accountEmail" class="accountContainerListItem verticallycenterchildren">
+          <h4>Email:</h4>
+          <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2 searchBox inputBox round" type="email" placeholder="Email" aria-label="Email">
+          </form>
+          <button class="editButton btn" id="editButtonEmail">Edit</button>
+        </li>
+        <li id="accountPassword" class="accountContainerListItem verticallycenterchildren">
+          <h4>Password:</h4>
+          <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2 searchBox inputBox round" type="password" placeholder="Password" aria-label="Email">
+          </form>
+          <button class="editButton btn" id="editButtonPassword">Edit</button>
+        </li>
+      </ul>
+    </div>
+  </main>
+</section>
+
+<section class="accountDesignsSection">
+  <div class="topContainer">
+    <div class="topContainerInnerBox">
+      <h3>👌 Logos you have upvoted:</h3>
+    </div>
+  </div>
+
+  <!-- You upvoted Section -->
+  <div class="mainSubmissionsContainer" class="group">
+    <div class="allSubmissionsContainer">
+      <ul class="submissionsList">
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <!-- Test -->
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="accountDesignsSection">
+  <div class="topContainer">
+    <div class="topContainerInnerBox">
+      <h3>🚀 Logos you have uploaded:</h3>
+    </div>
+  </div>
+
+  <!-- You uploaded Section -->
+  <div class="mainSubmissionsContainer" class="group">
+    <div class="allSubmissionsContainer">
+      <ul class="submissionsList">
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <!-- Test -->
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="accountDesignsSection">
+  <div class="topContainer">
+    <div class="topContainerInnerBox">
+      <h3>💰 Logos you have bought:</h3>
+    </div>
+  </div>
+
+  <!-- You uploaded Section -->
+  <div class="mainSubmissionsContainer" class="group">
+    <div class="allSubmissionsContainer">
+      <ul class="submissionsList">
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="img/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="img/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <!-- Test -->
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="whiteSpace"></section>
+
+<!-- Footer -->
+
+<div class="footer">
+  <div class="afooter">
+    <h5>© 2018 Logochain. All rights reserved.</h5>
+  </div>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" language="javascript" src="js/main.js"></script>
+
+</body>
+</html>

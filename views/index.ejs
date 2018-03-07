@@ -1,0 +1,179 @@
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Logochain</title>
+  <meta name="description" content="Buy and Sell Logos on the Blockchain.">
+  <meta name="Logochain" content="Marketplace">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+</head>
+<body>
+<header id="logochainHeader">
+
+
+  <!-- Blue SVG Desktop -->
+  <svg width="55vw" height="500px" preserveAspectRatio="none"  id="headerBlueSvg" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient x1="50%" y1="0%" x2="93.6304987%" y2="95.2771068%" id="linearGradient-1">
+        <stop stop-color="#705FFF" offset="0%"></stop>
+        <stop stop-color="#8CB6FF" offset="100%"></stop>
+      </linearGradient>
+    </defs>
+    <g id="gBluePoly" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <polygon id="HeaderGradientDesktop" fill="url(#linearGradient-1)" points="130 0 1462 0 1462 500 0 500"></polygon>
+    </g>
+  </svg>
+
+  <!-- Blue SVG Mobile -->
+  <svg width="100vw" height="500px" preserveAspectRatio="none"  id="headerBlueSvg" viewBox="0 0 500 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <linearGradient x1="50%" y1="0%" x2="93.6304987%" y2="95.2771068%" id="linearGradient-1">
+        <stop stop-color="#705FFF" offset="0%"></stop>
+        <stop stop-color="#8CB6FF" offset="100%"></stop>
+      </linearGradient>
+    </defs>
+    <g id="gBluePoly" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <polygon id="HeaderGradientMobile" fill="url(#linearGradient-1)" points="0 185 592.142857 -9 592.142857 586.714286 0 586.714286"></polygon>
+    </g>
+  </svg>
+
+  <image id="chainsBg" src="/images/chainsBg.png" width="664" height="382"></image>
+
+  <!-- Navigationbar -->
+  <nav class="navbar navbar-expand-lg transparentBackground">
+    <a class="navbar-brand" href="#">
+      <img src="/images/logo.svg" width="150" height="26" class="d-inline-block align-top" alt="">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav mr-auto ul-navbar" >
+        <li class="nav-item active li-navbar"">
+        <a class="nav-link uploadButton" href="#">Upload <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item li-navbar">
+          <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2 searchBox" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn round my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </li>
+        <li>
+          <a class="nav-link uploadButton" id="signIn" href="#">Sign In<span class=""></span></a>
+        </li>
+        <li>
+          <a class="nav-link uploadButton" id="register" href="#">Register<span class=""></span></a>
+        </li>
+        <li>
+          <a class="nav-link uploadButton" id="myAccountNavbar" href="#">👨‍💻 My Account<span class=""></span></a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- Heading-text Container -->
+  <div class="container-fluid" id="headerTextWrapper">
+    <h1>Logo Marketplace on the Blockchain</h1>
+    <h2>Buy, Sell & Upvote Logos - and get rewarded.</h2>
+    <h3> <a id="seeHowItWorks" class="explainerModalButton" href="#">See how it works >></a></h3>
+  </div>
+
+
+
+  <!-- Play Button -->
+  <a id="playButton" class="explainerModalButton" alt="Play Explainervideo" href="#">
+
+  </a>
+</header>
+
+<!-- Main Section -->
+<section>
+
+  <!-- Div Container with Title "Most upvoted Logos of the Week and Button -->
+  <div class="topContainer">
+    <div class="topContainerInnerBox">
+      <h3 id="mostUpvotedText">
+        <img src="/images/upvote_arrow.png" id="upvoteArrow" alt="Arrow" height="20" width="20">
+        Most upvoted Logos of the Week</h3>
+      <button id="uploadButton" class="btn topContainerInnerBoxButton uploadButton">Upload & Sell your Logo</button>
+    </div>
+  </div>
+  <!-- Main Section including all Logo cells -->
+  <main class="mainSubmissionsContainer" class="group">
+    <div class="allSubmissionsContainer">
+      <ul class="submissionsList">
+
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+        <li class="submission round">
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
+          <h4>Cool Grandpa Icon</h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <button class="btn buyButton round inSubmissionElement">Buy</button>
+        </li>
+
+        <!-- Test -->
+
+
+      </ul>
+    </div>
+  </main>
+</section>
+
+<section class="whiteSpace"></section>
+
+<!-- Footer -->
+
+<div class="footer">
+  <div class="afooter">
+    <h5>© 2018 Logochain. All rights reserved.</h5>
+  </div>
+</div>
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" language="javascript" src="/javascripts/main.js"></script>
+
+<!-- ExplainerVideo -->
+<script type="text/javascript" language="javascript" src="/javascripts/explainervideo.js"></script>
+
+<!-- Buy Modal -->
+<script type="text/javascript" language="javascript" src="/javascripts/buyModal.js"></script>
+
+<!-- Upload Modal -->
+<script type="text/javascript" language="javascript" src="/javascripts/uploadModal.js"></script>
+</body>
+</html>
