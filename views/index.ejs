@@ -2,21 +2,7 @@
 
 <!doctype html>
 <html lang="en">
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Logochain</title>
-  <meta name="description" content="Buy and Sell Logos on the Blockchain.">
-  <meta name="Logochain" content="Marketplace">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css" />
-
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-
-</head>
+<% include header %>
 <body>
 <header id="logochainHeader">
 
@@ -71,13 +57,13 @@
           </form>
         </li>
         <li>
-          <a class="nav-link uploadButton" id="signIn" href="#">Sign In<span class=""></span></a>
+          <a class="nav-link " id="signIn" href="#">Sign In<span class=""></span></a>
         </li>
         <li>
-          <a class="nav-link uploadButton" id="register" href="#">Register<span class=""></span></a>
+          <a class="nav-link " id="register" href="#">Register<span class=""></span></a>
         </li>
         <li>
-          <a class="nav-link uploadButton" id="myAccountNavbar" href="#">👨‍💻 My Account<span class=""></span></a>
+          <a class="nav-link " id="myAccountNavbar" href="/myaccount">👨‍💻 My Account<span class=""></span></a>
         </li>
       </ul>
 
@@ -148,15 +134,7 @@
 
 <section class="whiteSpace"></section>
 
-<!-- Footer -->
-
-<div class="footer">
-  <div class="afooter">
-    <h5>© 2018 Logochain. All rights reserved.</h5>
-  </div>
-</div>
-
-
+<%include footer%>
 
 
 <!-- Optional JavaScript -->
