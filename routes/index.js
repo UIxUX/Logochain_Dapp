@@ -4,8 +4,11 @@ var router = express.Router();
 
 const fs = require('fs');
 
+
+/*
+
 function createDummyJSONArray() {
-    
+
 }
 
 function IsJsonString(str) {
@@ -18,6 +21,7 @@ function IsJsonString(str) {
 }
 
 /* JSON test */
+/*
 function getDummyJSON() {
     var rawdata = fs.readFileSync('../../json/iconsubmission.json');
     var submissionObject = JSON.parse(rawdata);
@@ -26,6 +30,7 @@ function getDummyJSON() {
 
     return submissionObject;
 }
+/*
 
 
 
@@ -34,7 +39,7 @@ function getDummyJSON() {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log("Get Request **********");
-  res.render('index', { iconname: getDummyJSON().iconname });
+  //res.render('index', { iconname: getDummyJSON().iconname });
 });
 
 
