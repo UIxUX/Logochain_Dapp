@@ -20,7 +20,14 @@ var SubmissionSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    numberOfStars: Number,
+    buyer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    upvotes: [{
+        user: { type : Schema.ObjectId, ref : 'User' },
+        createdAt: { type : Date, default : Date.now }
+    }],
     created: {
         type: Date,
         default: Date.now
