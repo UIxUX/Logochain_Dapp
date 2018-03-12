@@ -34,7 +34,7 @@ function fadeInSignupModal() {
         '<input type="password" name="password">' +
         '<br>' +
         '<label>Wallet-ID</label><br>' +
-        '<input type="text" name="walletID">' +
+        '<input type="text" name="wallet_id">' +
         '<br>' +
 
         '<input type="submit" value="Submit">' +

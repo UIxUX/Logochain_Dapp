@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var expressValidator = require("express-validator");
+
 
 router.post('/', function(req, res, next) {
 
@@ -14,6 +14,7 @@ router.post('/', function(req, res, next) {
 
     if (errors) {
         console.log('Errors!');
+        res.end();
     } else {
         var newUser = {
             wallet_id: req.body.wallet_id,
