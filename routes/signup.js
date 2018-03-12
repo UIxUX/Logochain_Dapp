@@ -14,7 +14,8 @@ router.post('/', function(req, res, next) {
 
     if (errors) {
         console.log('Errors!');
-        res.render('index', {});
+        res.send('One Field is empty! Try again.');
+
     } else {
         var newUser = {
             wallet_id: req.body.wallet_id,
