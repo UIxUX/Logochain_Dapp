@@ -41,7 +41,7 @@ app.use('/users', users);
 
 
 //account site
-app.use('/myaccount', account);
+app.use('/account', account);
 
 //Sign in
 app.use('/signup', signup);
