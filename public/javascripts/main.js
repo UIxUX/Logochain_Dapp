@@ -69,6 +69,7 @@ function fadeOutDarkLayer() {
         fadeOutVideoModal();
         fadeOutBuyModal();
         fadeOutUploadModal();
+        fadeOutSignupModal();
     }, 0);
 
     $("#overlay").fadeTo('fast', 0.50).promise().done(

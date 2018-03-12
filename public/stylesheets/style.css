@@ -728,6 +728,21 @@ footer {
   margin: 0 auto;
 }
 
+
+#signupModal {
+  left:10vw;
+  right:10vw;
+  max-height: 600px;
+  max-width: 600px;
+  z-index: 10;
+  position: fixed;
+  top: 20vh;
+  background-color: white;
+  padding: 50px;
+  text-align: center;
+  margin: 0 auto;
+}
+
 /* ----------------------------------------------- */
 /* ----------------------------------------------- */
 /* ----------------------------------------------- */
