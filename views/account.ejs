@@ -33,23 +33,23 @@
 <section>
   <main id="accountContainer" class="lightShadow">
     <div id="accountContainerHeader">
-      <h5 id="yourAccount" class="whiteText">Your Account</h5>
+      <h5 id="yourAccount" class="whiteText">Your Account: <%= username%></h5>
       <button id="deleteAccountButton" class="whiteOutlinedButton btn round">Delete</button>
-      <h4 id="walletID" class="whiteText">0x87A0110eD1D09aF6568392e77CEDae95e5f3A574</h4>
+      <h4 id="walletID" class="whiteText"><%= wallet_id%></h4>
     </div>
     <div id="accountContainerMain">
       <ul id="accountContainerMainList">
         <li id="accountEmail" class="accountContainerListItem verticallycenterchildren">
           <h4>Email:</h4>
           <form class="form-inline my-2 my-lg-0 ">
-            <input class="form-control mr-sm-2 searchBox inputBox round" type="email" placeholder="Email" aria-label="Email">
+            <input class="form-control mr-sm-2 searchBox inputBox round" type="email" placeholder="<%= email%>" aria-label="Email">
           </form>
           <button class="editButton btn" id="editButtonEmail">Edit</button>
         </li>
         <li id="accountPassword" class="accountContainerListItem verticallycenterchildren">
           <h4>Password:</h4>
           <form class="form-inline my-2 my-lg-0 ">
-            <input class="form-control mr-sm-2 searchBox inputBox round" type="password" placeholder="Password" aria-label="Email">
+            <input class="form-control mr-sm-2 searchBox inputBox round" type="password" placeholder="<%= password%>" aria-label="Email">
           </form>
           <button class="editButton btn" id="editButtonPassword">Edit</button>
         </li>

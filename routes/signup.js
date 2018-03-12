@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
 
     if (errors) {
         console.log('Errors!');
-        res.end();
+        res.render('index', {});
     } else {
         var newUser = {
             wallet_id: req.body.wallet_id,
@@ -23,8 +23,8 @@ router.post('/', function(req, res, next) {
             username: req.body.username
         }
         console.log('new user: ' + newUser.username + ' created');
+        res.render('account', {wallet_id: newUser.wallet_id, email: newUser.email, password: newUser.password, username:newUser.username});
     }
-
 
 });
 
