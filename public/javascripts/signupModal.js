@@ -1,16 +1,40 @@
+    var signupform = $('.signup');
 
-//Buybutton clicked
-$(".signupButton").click(function(e){
-    e.preventDefault();
+    $("body").on("submit", signupform, function(e){
+        e.preventDefault();
+        console.log();
+        alert("SENDING");
 
-    setTimeout(function () {
-        fadeInDarkLayer();
-    }, 0);
+        var url = '/signup';
 
-    setTimeout(function () {
-        fadeInSignupModal();
-    }, 200);
-});
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $(".signup").serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                alert(data);
+            }
+        });
+    });
+
+    //Buybutton clicked
+    $(".signupButton").click(function(e){
+        e.preventDefault();
+
+        setTimeout(function () {
+            fadeInDarkLayer();
+        }, 0);
+
+        setTimeout(function () {
+            fadeInSignupModal();
+        }, 200);
+    });
+
+
+
+
+
 
 var signupModal = document.createElement('div');
 
@@ -22,7 +46,7 @@ function fadeInSignupModal() {
         '        <p>Register to participate!</p>\n' +
         '        <p class="smalltext">By registering and using our service you automatically agree to our terms of use, privacy policy & license agreement.</p>\n' +
 
-        '<form method="post" action="/signup">' +
+        '<form class="signup" method="post" action="/signup">' +
         '<label>Name</label><br>' +
         '<input type="text" name="username"' +
         '<br>' +
@@ -47,6 +71,8 @@ function fadeInSignupModal() {
     $("#signupModal").css("display", "block");
     $("#signupModal").fadeTo('fast', 1.0);
 }
+
+
 
 function fadeOutSignupModal() {
     $("#signupModal").fadeTo('fast', 0.0).promise().done(
