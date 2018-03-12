@@ -14,7 +14,8 @@ router.post('/', function(req, res, next) {
 
     if (errors) {
         console.log('Errors!');
-        res.send('One Field is empty! Try again.');
+        res.status(500);
+        res.send('The Account with the username ' + res.body.username + " could not get created.");
 
     } else {
         var newUser = {
@@ -22,7 +23,7 @@ router.post('/', function(req, res, next) {
             email: req.body.email,
             password: req.body.password,
             username: req.body.username
-        }
+        };
         console.log('new user: ' + newUser.username + ' created');
         res.render('account', {wallet_id: newUser.wallet_id, email: newUser.email, password: newUser.password, username:newUser.username});
     }

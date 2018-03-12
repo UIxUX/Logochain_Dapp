@@ -3,17 +3,25 @@
     $("body").on("submit", signupform, function(e){
         e.preventDefault();
         console.log();
-        alert("SENDING");
 
         var url = '/signup';
 
         $.ajax({
             type: "POST",
             url: url,
-            data: $(".signup").serialize(), // serializes the form's elements.
-            success: function(data)
-            {
-                alert(data);
+            data: $(".signup").serialize(),
+            success: function(data) {
+                alert("Account created!");
+                fadeOutSignupModal();
+                fadeOutDarkLayer();
+                setTimeout( function() {
+                    window.location.href = "/account";
+                }, 500);
+
+
+            }, error: function(data) {
+                alert("Error! Try again.");
+                //$(document).getElementById('signupModal').append('<p>Try again. An Error occured.</p>');
             }
         });
     });
