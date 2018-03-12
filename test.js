@@ -38,3 +38,37 @@ mongoose.connect('mongodb://localhost/test', function (err) {
 
     });
 });
+
+
+
+mongoose.connect('mongodb://localhost/test', function (err) {
+    if (err) throw err;
+
+    console.log('Successfully connected');
+
+    Submission.find({
+        title: 'Fire Icon'
+    }).sort('-created')
+        .limit(5)
+        .exec(function(err, submissions) {
+            if (err) throw err;
+
+            console.log(submissions);
+        });
+
+    /*
+    User.findById('59b31406beefa1082819e72f', function(err, author) {
+        if (err) throw err;
+
+        //author.linkedin = 'https://www.linkedin.com/in/jamie-munro-8064ba1a/';
+
+        author.save(function(err) {
+            if (err) throw err;
+
+            console.log('Author updated successfully');
+        });
+    });
+    */
+
+});
+
