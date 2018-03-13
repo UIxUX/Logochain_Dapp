@@ -7,10 +7,15 @@ var bodyParser = require('body-parser');
 
 var expressValidator = require("express-validator");
 
+var mongodbControl = require('./controllers/mongooseControl');
+
 var index = require('./routes/index');
 var users = require('./routes/users');
 var account = require('./routes/account');
 var signup = require('./routes/signup');
+
+
+
 
 var app = express();
 
@@ -33,7 +38,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressValidator());
-
 
 
 app.use('/', index);
