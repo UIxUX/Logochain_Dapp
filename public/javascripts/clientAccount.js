@@ -6,7 +6,7 @@ $(document).ready( function () {
 
 });
 
-
+// Not working - not sure why
 function deleteAccount () {
     var confirmation = confirm('Are you sure you want to delete your Account?');
 

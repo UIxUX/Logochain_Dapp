@@ -18,52 +18,69 @@ db.once('open', function() {
 });
 */
 
-mongoose.connect('mongodb://localhost/mongoose', function (err) {
-    if (err) throw err;
+var methods = {};
 
-    console.log('Successfully connected SAVE');
+methods.saveUser = function (email, username, walletID, password) {
+    if (err) {
+        console.log("couldn't save User");
+    };
+    console.log('Successfully connected to db');
 
-    var testPerson1 = new User({
-        _id: new mongoose.Types.ObjectId(),
-        email: "max.mustermann@gmail.com",
-        username: 'maxDesigner',
-        walletID: '0x102948957830183192',
-        password: '12345'
-    });
+    console.log("Saved User with email " + email + " " + username + " " + walletID);
+}
 
-
-    testPerson1.save(function(err) {
+methods.saveTestData = function () {
+    mongoose.connect('mongodb://localhost/mongoose', function (err) {
         if (err) throw err;
 
-        console.log('New User successfully saved.');
+        console.log('Successfully connected SAVE');
 
-        var testSubmission1 = new Submission({
+        var testPerson1 = new User({
             _id: new mongoose.Types.ObjectId(),
-            title: 'Max Logo',
-            author: testPerson1._id,
+            email: "max.mustermann@gmail.com",
+            username: 'maxDesigner',
+            walletID: '0x102948957830183192',
+            password: '12345'
         });
 
-        testSubmission1.save(function(err) {
+
+        testPerson1.save(function(err) {
             if (err) throw err;
 
-            console.log('Submission successfully saved.');
+            console.log('New User successfully saved.');
+
+            var testSubmission1 = new Submission({
+                _id: new mongoose.Types.ObjectId(),
+                title: 'Max Logo',
+                author: testPerson1._id,
+            });
+
+            testSubmission1.save(function(err) {
+                if (err) throw err;
+
+                console.log('Submission successfully saved.');
+            });
         });
     });
-});
+}
 
 
-mongoose.connect('mongodb://localhost/mongoose', function (err) {
-    if (err) throw err;
+methods.retrieveTestData = function () {
+    mongoose.connect('mongodb://localhost/mongoose', function (err) {
+        if (err) throw err;
 
-    console.log('Successfully connected FIND');
+        console.log('Successfully connected FIND');
 
-    Submission.find({
-        title: 'Max Logo'
-    }).sort('-created')
-        .limit(5)
-        .exec(function(err, submissions) {
-            if (err) throw err;
+        Submission.find({
+            title: 'Max Logo'
+        }).sort('-created')
+            .limit(5)
+            .exec(function (err, submissions) {
+                if (err) throw err;
 
-            console.log(submissions);
-        });
-});
+                console.log(submissions);
+            });
+    });
+}
+
+exports.data = methods;

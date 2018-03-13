@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-
+//require('../controllers/mongooseControl');
+var mongooseControls = require('../controllers/mongooseControl');
 
 router.post('/', function(req, res, next) {
 
@@ -14,9 +15,10 @@ router.post('/', function(req, res, next) {
 
     if (errors) {
         console.log('Errors!');
-        res.status(500);
+        res.sendStatus(500);
 
     } else {
+        res.sendStatus(200);
         var newUser = {
             wallet_id: req.body.wallet_id,
             email: req.body.email,
@@ -25,6 +27,10 @@ router.post('/', function(req, res, next) {
         };
         console.log('new user: ' + newUser.username + ' created');
         //res.render('account', {wallet_id: newUser.wallet_id, email: newUser.email, password: newUser.password, username:newUser.username});
+
+        mongooseControls.data.saveUser(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
+
+
     }
 
 });
