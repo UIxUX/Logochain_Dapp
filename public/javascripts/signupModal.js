@@ -40,13 +40,7 @@
     });
 
 
-
-
-
-
 var signupModal = document.createElement('div');
-
-
 
 
 function fadeInSignupModal() {
