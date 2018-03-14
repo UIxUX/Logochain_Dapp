@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var passport = global.passport;
 
 //require('../controllers/mongooseControl');
 var mongooseControls = require('../controllers/mongooseControl');
 
 var passportControl = require('../passport/passportControl');
 
-router.post('/', function(req, res, next) {
+router.post('/',  function(req, res, next) {
 
     req.checkBody('wallet_id', 'Specify Wallet ID').notEmpty();
     req.checkBody('email', 'Specify Email').notEmpty();
@@ -32,6 +33,12 @@ router.post('/', function(req, res, next) {
 
         mongooseControls.saveUserData(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
         console.log('new user: ' + newUser.username + ' created');
+
+        passport.authenticate('local-signin')(req, res, function () {
+            //res.redirect('/');
+            console.log("authenticated");
+        });
+
         res.sendStatus(200);
 
     }

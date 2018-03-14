@@ -4,26 +4,25 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var flash    = require('connect-flash');
+global.passport = require('passport');
 
 var expressValidator = require("express-validator");
 
 // Configuring MongoDB
-var mongodbControl = require('./controllers/mongooseControl');
+var mongoose = require('mongoose');
 
 var app = express();
 
+mongoose.connect('mongodb://localhost/mongoose');
+
 // Configuring Passport
-var passportControl = require('./passport/passportControl');
+require('./passport/passport')(passport);
 var session = require('express-session');
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
-app.use(passportControl.initialize());
-app.use(passportControl.session());
-
-var index = require('./routes/index');
-var users = require('./routes/users');
-var account = require('./routes/account');
-var signup = require('./routes/signup');
-
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 
 // view engine setup
@@ -45,6 +44,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressValidator());
+
+
+
+// ROUTES
+var index = require('./routes/index');
+var users = require('./routes/users');
+var account = require('./routes/account');
+var signup = require('./routes/signup');
 
 
 app.use('/', index);
