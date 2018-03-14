@@ -25,10 +25,12 @@ router.post('/', function(req, res, next) {
             password: req.body.password,
             username: req.body.username
         };
-        console.log('new user: ' + newUser.username + ' created');
-        //res.render('account', {wallet_id: newUser.wallet_id, email: newUser.email, password: newUser.password, username:newUser.username});
 
-        mongooseControls.data.saveUser(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
+        mongooseControls.saveUser(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
+        console.log('new user: ' + newUser.username + ' created');
+
+
+
 
 
     }

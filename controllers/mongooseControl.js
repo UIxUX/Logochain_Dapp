@@ -83,4 +83,4 @@ methods.retrieveTestData = function () {
     });
 }
 
-exports.data = methods;
+module.exports = methods;
