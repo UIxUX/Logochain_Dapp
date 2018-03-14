@@ -4,6 +4,8 @@ var router = express.Router();
 //require('../controllers/mongooseControl');
 var mongooseControls = require('../controllers/mongooseControl');
 
+var passportControl = require('../passport/passportControl');
+
 router.post('/', function(req, res, next) {
 
     req.checkBody('wallet_id', 'Specify Wallet ID').notEmpty();
