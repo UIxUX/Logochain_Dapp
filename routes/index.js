@@ -41,6 +41,15 @@ function getDummyJSON() {
 router.get('/', function(req, res, next) {
   console.log("Get Request **********");
   res.render('index', { });
+
+    if(req.session.page_views){
+        req.session.page_views++;
+        console.log('page has been viewed ' + req.session.page_views + "times this session.");
+    } else {
+        req.session.page_views = 1;
+        console.log("page has been viewed for the first time this session.");
+    }
+
 });
 
 

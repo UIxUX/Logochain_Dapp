@@ -1,9 +1,9 @@
-
+console.log('****** ACCOUNT LOADED ******');
 
 $(document).ready( function () {
     console.log('ACCOUNT LOADED');
-    $('.deleteAccount').on('click', deleteAccount);
-
+    //$('.deleteAccount').on('click', deleteAccount);
+    $('.deleteAccount').onclick = deleteAccount();
 });
 
 // Not working - not sure why

@@ -48,6 +48,27 @@ methods.saveUserData = function (email, username, walletID, password) {
 }
 
 
+methods.retrieveUserDataWithId = function (id) {
+    mongoose.connect('mongodb://localhost/mongoose', function (err) {
+        if (err) throw err;
+
+        console.log('Successfully connected FIND USERDATA');
+
+        User.find({
+            _id: id
+        }).sort('-created')
+            .limit(1)
+            .exec(function (err, user) {
+                if (err) throw err;
+                console.log(user);
+
+                return user;
+            });
+    });
+}
+
+
+
 
 methods.saveTestData = function () {
     mongoose.connect('mongodb://localhost/mongoose', function (err) {

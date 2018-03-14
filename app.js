@@ -10,10 +10,12 @@ var expressValidator = require("express-validator");
 // Configuring MongoDB
 var mongodbControl = require('./controllers/mongooseControl');
 
+var app = express();
+
 // Configuring Passport
 var passport = require('passport');
-var expressSession = require('express-session');
-app.use(expressSession({secret: 'mySecretKey'}));
+var session = require('express-session');
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -23,9 +25,6 @@ var account = require('./routes/account');
 var signup = require('./routes/signup');
 
 
-
-
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
