@@ -48,9 +48,11 @@ methods.saveUserData = function (email, username, walletID, password) {
 }
 
 
-methods.retrieveUserDataWithId = function (id) {
+methods.retrieveUserDataWithId = function (id, cb) {
     mongoose.connect('mongodb://localhost/mongoose', function (err) {
-        if (err) throw err;
+        if (err) {
+            return cb(null, null);
+        };
 
         console.log('Successfully connected FIND USERDATA');
 
@@ -62,13 +64,35 @@ methods.retrieveUserDataWithId = function (id) {
                 if (err) throw err;
                 console.log(user);
 
-                return user;
+                return cb(null, user);
             });
     });
 }
 
 
+methods.retrieveUserDataWithUsername = function (username, cb) {
+    mongoose.connect('mongodb://localhost/mongoose', function (err) {
+        if (err) {
+            return cb(null, null);
+        };
 
+        console.log('Successfully connected FIND USERDATA');
+
+        User.find({
+            username: username
+        }).sort('-created')
+            .limit(1)
+            .exec(function (err, user) {
+                if (err) throw err;
+                console.log(user);
+
+                return cb(null, user);
+            });
+    });
+}
+
+
+//********** Test Functions **********
 
 methods.saveTestData = function () {
     mongoose.connect('mongodb://localhost/mongoose', function (err) {

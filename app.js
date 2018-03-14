@@ -13,11 +13,11 @@ var mongodbControl = require('./controllers/mongooseControl');
 var app = express();
 
 // Configuring Passport
-var passport = require('passport');
+var passportControl = require('./passport/passportControl');
 var session = require('express-session');
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passportControl.initialize());
+app.use(passportControl.session());
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -55,9 +55,11 @@ app.use('/users', users);
 app.use('/account', account);
 
 
-//Sign in
+//Sign up
 app.use('/signup', signup);
 
+//Sign in
+app.use('/signin', signup);
 
 
 // catch 404 and forward to error handler
