@@ -24,10 +24,30 @@ var methods = {};
 
 methods.saveUserData = function (email, username, walletID, password) {
 
-    console.log('Successfully connected to db');
+    mongoose.connect('mongodb://localhost/mongoose', function (err) {
+        if (err) throw err;
 
-    console.log("Saved User with email " + email + " " + username + " " + walletID);
+        console.log('Successfully connected SAVE USERDATA');
+
+        var userToSave = new User({
+            _id: new mongoose.Types.ObjectId(),
+            email: email,
+            username: username,
+            walletID: walletID,
+            password: password
+        });
+
+        userToSave.save(function(err) {
+            if (err) throw err;
+
+            console.log('New User with username ' + username + " successfully saved.");
+
+        });
+    });
+
 }
+
+
 
 methods.saveTestData = function () {
     mongoose.connect('mongodb://localhost/mongoose', function (err) {
