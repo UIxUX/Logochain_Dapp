@@ -20,10 +20,10 @@ db.once('open', function() {
 
 var methods = {};
 
-methods.saveUser = function (email, username, walletID, password) {
-    if (err) {
-        console.log("couldn't save User");
-    };
+
+
+methods.saveUserData = function (email, username, walletID, password) {
+
     console.log('Successfully connected to db');
 
     console.log("Saved User with email " + email + " " + username + " " + walletID);

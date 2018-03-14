@@ -12,13 +12,15 @@ router.post('/', function(req, res, next) {
     req.checkBody('username', 'Specify Username').notEmpty();
 
     var errors = req.validationErrors();
+    console.log('errors in req.checkbody: ');
+    console.log(errors);
 
     if (errors) {
         console.log('Errors!');
         res.sendStatus(500);
 
     } else {
-        res.sendStatus(200);
+        console.log("Errors ist false");
         var newUser = {
             wallet_id: req.body.wallet_id,
             email: req.body.email,
@@ -26,12 +28,9 @@ router.post('/', function(req, res, next) {
             username: req.body.username
         };
 
-        mongooseControls.saveUser(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
+        mongooseControls.saveUserData(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
         console.log('new user: ' + newUser.username + ' created');
-
-
-
-
+        res.sendStatus(200);
 
     }
 
