@@ -7,7 +7,15 @@ var bodyParser = require('body-parser');
 
 var expressValidator = require("express-validator");
 
+// Configuring MongoDB
 var mongodbControl = require('./controllers/mongooseControl');
+
+// Configuring Passport
+var passport = require('passport');
+var expressSession = require('express-session');
+app.use(expressSession({secret: 'mySecretKey'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 var index = require('./routes/index');
 var users = require('./routes/users');
