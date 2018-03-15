@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET account page. */
 router.get('/', isLoggedIn, function(req, res) {
     console.log('Rendering Account..');
-    res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: req.user.password, username: req.user.username} );
+    res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username} );
 });
 
 /* Deleting user. */
