@@ -847,3 +847,16 @@ footer {
   width: 100vw;
   background-color: white;
 }
+
+
+
+.flash {
+  position: fixed;
+  top: 0px;
+  text-align: center;
+  z-index: 999999;
+  background-color: clear;
+  background: none;
+  color: red !important;
+  font-weight: lighter;
+}

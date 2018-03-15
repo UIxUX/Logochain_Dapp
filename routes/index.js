@@ -40,7 +40,7 @@ function getDummyJSON() {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log("Get Request **********");
-  res.render('index', { });
+  res.render('index', { flash: req.flash('flash')  });
 
     if(req.session.page_views){
         req.session.page_views++;

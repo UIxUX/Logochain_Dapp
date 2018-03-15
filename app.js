@@ -68,6 +68,14 @@ app.use('/signup', signup);
 //Sign in
 app.use('/signin', signup);
 
+//Logout
+app.get('/logout', function(req, res) {
+    req.logout();
+    req.flash('flash', 'You successfully logged out.');
+    res.redirect('/');
+    console.log("Logged out!");
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
