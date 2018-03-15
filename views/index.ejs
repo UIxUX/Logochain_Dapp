@@ -59,15 +59,18 @@
             <button class="btn round my-2 my-sm-0" type="submit">Search</button>
           </form>
         </li>
+        <% if ( !loggedIn ) {%>
         <li>
           <a class="nav-link signinButton" id="signIn" href="#">Sign In<span class=""></span></a>
         </li>
         <li>
           <a class="nav-link signupButton" id="register" href="">Register<span class=""></span></a>
         </li>
+          <%} else {%>
         <li>
-          <a class="nav-link " id="myAccountNavbar" href="/myaccount">👨‍💻 My Account <span class=""></span></a>
+          <a class="nav-link " id="myAccountNavbar" href="/account">👨‍💻 My Account <span class=""></span></a>
         </li>
+          <%} %>
       </ul>
 
     </div>

@@ -39,16 +39,15 @@ function getDummyJSON() {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  console.log("Get Request **********");
-  res.render('index', { flash: req.flash('flash')  });
+    var loggedIn = false;
 
-    if(req.session.page_views){
-        req.session.page_views++;
-        console.log('page has been viewed ' + req.session.page_views + "times this session.");
-    } else {
-        req.session.page_views = 1;
-        console.log("page has been viewed for the first time this session.");
+    if (req.isAuthenticated()) {
+        loggedIn = true;
     }
+
+  res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn  });
+
+
 
 });
 
