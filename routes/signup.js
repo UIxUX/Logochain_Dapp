@@ -34,6 +34,10 @@ router.post('/',  function(req, res, next) {
         mongooseControls.saveUserData(newUser.email, newUser.username, newUser.wallet_id, newUser.password);
         console.log('new user: ' + newUser.username + ' created');
 
+        req.logIn(user, function(error) {
+            if (error) console.log("ERROR LOGIN");
+        });
+
         passport.authenticate('local-signin')(req, res, function () {
             //res.redirect('/');
             console.log("authenticated");

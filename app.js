@@ -10,18 +10,18 @@ global.passport = require('passport');
 var expressValidator = require("express-validator");
 
 // Configuring MongoDB
-var mongoose = require('mongoose');
+global.mongoose = require('mongoose');
 
 var app = express();
 
 mongoose.connect('mongodb://localhost/mongoose');
 
 // Configuring Passport
-require('./passport/passport')(passport);
+require('./passport/passport')(global.passport);
 var session = require('express-session');
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(global.passport.initialize());
+app.use(global.passport.session());
 app.use(flash());
 
 
