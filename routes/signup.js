@@ -7,6 +7,13 @@ var mongooseControls = require('../controllers/mongooseControl');
 
 var passportControl = require('../passport/passportControl');
 
+router.post('/', passport.authenticate('local-signup', {
+    successRedirect : '/account', // redirect to the secure profile section
+    failureRedirect : '/', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
+
+/*
 router.post('/',  function(req, res, next) {
 
     req.checkBody('wallet_id', 'Specify Wallet ID').notEmpty();
@@ -52,6 +59,6 @@ router.post('/',  function(req, res, next) {
     }
 
 });
-
+*/
 
 module.exports = router;

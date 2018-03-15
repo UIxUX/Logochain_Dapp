@@ -57,9 +57,16 @@ module.exports = function(passport) {
                     // create the user
                     var newUser            = new User();
 
+                    var username = req.body.username;
+                    var wallet_id = req.body.wallet_id;
+
                     // set the user's local credentials
+                    newUser._id = mongoose.Types.ObjectId();
+
                     newUser.email    = email;
                     newUser.password = newUser.generateHash(password); // use the generateHash function in our user model
+                    newUser.username = username;
+                    newUser.walletID = wallet_id;
 
                     // save the user
                     newUser.save(function(err) {
