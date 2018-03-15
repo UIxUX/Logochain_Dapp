@@ -36,11 +36,15 @@ router.post('/',  function(req, res, next) {
 
         req.logIn(user, function(error) {
             if (error) console.log("ERROR LOGIN");
+            console.log("NO ERROR LOGIN");
         });
 
-        passport.authenticate('local-signin')(req, res, function () {
+        global.passport.authenticate('local-signin')(req, res, function () {
             //res.redirect('/');
             console.log("authenticated");
+            req.session.save(() => {
+                //res.redirect('/account');
+            })
         });
 
         res.sendStatus(200);

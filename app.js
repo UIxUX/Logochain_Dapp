@@ -19,7 +19,7 @@ mongoose.connect('mongodb://localhost/mongoose');
 // Configuring Passport
 require('./passport/passport')(global.passport);
 var session = require('express-session');
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }, resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 600000 }, resave: true, saveUninitialized: true }));
 app.use(global.passport.initialize());
 app.use(global.passport.session());
 app.use(flash());
