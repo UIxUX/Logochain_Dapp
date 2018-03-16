@@ -6,7 +6,7 @@ var mongooseControls = require('../controllers/mongooseControl');
 
 
 
-router.post('/', passport.authenticate('local', { failureRedirect: '/' }), function(req, res) {
+router.post('/', passport.authenticate('local-login', { failureRedirect: '/' }), function(req, res) {
     res.redirect('/account');
 });
 
