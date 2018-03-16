@@ -49,7 +49,7 @@ function fadeInSigninModal() {
         '        <p class="smalltext">By using our service you automatically agree to our terms of use, privacy policy & license agreement.</p>\n' +
 
         '<form class="signin" method="post" action="/signin">' +
-        '<label>Email</label><br>' +
+        '<label>Wallet-ID</label><br>' +
         '<input type="text" name="username"' +
         '<br>' +
         '<label>Password</label><br>' +

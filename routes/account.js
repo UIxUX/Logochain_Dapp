@@ -9,8 +9,18 @@ router.get('/', isLoggedIn, function(req, res) {
 });
 
 /* Deleting user. */
-router.delete('/delete/:id', function (req, res) {
-   console.log(req.params.id);
+router.delete('/delete', isLoggedIn, function (req, res) {
+
+
+    var loggedIn = false;
+
+    if (req.isAuthenticated()) {
+        loggedIn = true;
+    }
+
+    req.flash('flash', 'Your account got successfully deleted.');
+
+    res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn  });
 });
 
 

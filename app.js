@@ -52,6 +52,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var account = require('./routes/account');
 var signup = require('./routes/signup');
+var signin = require('./routes/signin');
 
 
 app.use('/', index);
@@ -60,13 +61,14 @@ app.use('/users', users);
 
 //account site
 app.use('/account', account);
+app.use('/account/delete', account);
 
 
 //Sign up
 app.use('/signup', signup);
 
 //Sign in
-app.use('/signin', signup);
+app.use('/signin', signin);
 
 //Logout
 app.get('/logout', function(req, res) {
