@@ -79,6 +79,30 @@ app.get('/logout', function(req, res) {
 });
 
 
+//For Uploading a submission
+app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
+
+    if ( !req.file.mimetype.startsWith( 'image/' ) ) {
+        return res.status( 422 ).json( {
+            error : 'The uploaded file must be an image'
+        } );
+    }
+
+    var dimensions = sizeOf( req.file.path );
+
+    if ( ( dimensions.width < 640 ) || ( dimensions.height < 480 ) ) {
+        return res.status( 422 ).json( {
+            error : 'The image must be at least 640 x 480px'
+        } );
+    }
+
+    return res.status( 200 ).send( req.file );
+
+});
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
