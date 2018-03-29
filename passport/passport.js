@@ -35,15 +35,15 @@ module.exports = function(passport) {
 
     passport.use('local-signup', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField : 'wallet_id',
+            usernameField : 'walletID',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, wallet_id, password, done) {
+        function(req, walletID, password, done) {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'walletID' :  wallet_id }, function(err, user) {
+            User.findOne({ 'walletID' :  walletID }, function(err, user) {
                 // if there are any errors, return the error
                 if (err)
                     return done(err);
@@ -58,7 +58,7 @@ module.exports = function(passport) {
                     var newUser            = new User();
 
                     var username = req.body.username;
-                    var wallet_id = req.body.wallet_id;
+                    var walletID = req.body.walletID;
                     var email = req.body.email;
 
                     // set the user's local credentials
@@ -67,7 +67,7 @@ module.exports = function(passport) {
                     newUser.email    = email;
                     newUser.password = newUser.generateHash(password); // use the generateHash function in our user model
                     newUser.username = username;
-                    newUser.walletID = wallet_id;
+                    newUser.walletID = walletID;
 
                     // save the user
                     newUser.save(function(err) {
@@ -89,15 +89,15 @@ module.exports = function(passport) {
 
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField : 'wallet_id',
+            usernameField : 'walletID',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, wallet_id, password, done) { // callback with email and password from our form
+        function(req, walletID, password, done) { // callback with email and password from our form
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            User.findOne({ 'walletID' :  wallet_id }, function(err, user) {
+            User.findOne({ 'walletID' :  walletID }, function(err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
                     return done(err);

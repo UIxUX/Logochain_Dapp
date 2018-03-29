@@ -1,6 +1,6 @@
     var signupform = $('.signup');
 
-    $("body").on("submit", signupform, function(e){
+    signupform.on("submit", signupform, function(e){
         e.preventDefault();
         console.log();
 
@@ -50,7 +50,7 @@ function fadeInSignupModal() {
 
         '<form class="signup" method="post" action="/signup">' +
         '<label>Name</label><br>' +
-        '<input type="text" name="username"' +
+        '<input type="text" name="walletID"' +
         '<br>' +
         '<br>' +
         '<label>Email</label><br>' +

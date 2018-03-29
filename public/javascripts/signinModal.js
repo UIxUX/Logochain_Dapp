@@ -1,6 +1,6 @@
     var signinform = $('.signin');
 
-    $("body").on("submit", signinform, function(e){
+    signinform.on("submit", signinform, function(e){
         e.preventDefault();
         console.log();
 
@@ -50,7 +50,7 @@ function fadeInSigninModal() {
 
         '<form class="signin" method="post" action="/signin">' +
         '<label>Wallet-ID</label><br>' +
-        '<input type="text" name="username"' +
+        '<input type="text" name="walletID"' +
         '<br>' +
         '<label>Password</label><br>' +
         '<br>' +
