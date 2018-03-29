@@ -9,6 +9,12 @@ global.passport = require('passport');
 
 var expressValidator = require("express-validator");
 
+//Uploading
+var multer 		=		require( 'multer' );
+var upload 		= 	multer( { dest: 'uploads/' } );
+var sizeOf 		= 	require( 'image-size' );
+require( 'string.prototype.startswith' );
+
 // Configuring MongoDB
 global.mongoose = require('mongoose');
 

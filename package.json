@@ -20,6 +20,9 @@
     "serve-favicon": "~2.4.5",
     "connect-ensure-login": "^0.1.1",
     "bcrypt-nodejs": "^0.0.3",
-    "connect-flash": "^0.1.1"
+    "connect-flash": "^0.1.1",
+    "image-size": "^0.3.5",
+    "multer": "^1.1.0",
+    "string.prototype.startswith": "^0.2.0"
   }
 }
