@@ -138,7 +138,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
 
 
 
-    newSubmission.icon.data = Buffer(encImg, 'base64');
+    newSubmission.icon.data = encImg;
     newSubmission.icon.contentType = req.file.mimetype;
     newSubmission.author = req.user._id;
     newSubmission.price = price;
