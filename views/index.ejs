@@ -170,6 +170,9 @@
   data.append("price", $("#priceS")[0].value);
   data.append("title", $("#titleS")[0].value);
   });
+  dZone.on('complete', function () {
+      location.reload();
+  });
 
 </script>
 
