@@ -109,6 +109,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     var newSubmission            = new Submission();
 
     var title = req.body.title;
+    var price = req.body.price;
 
     // set the submissions attributes
     newSubmission._id = mongoose.Types.ObjectId();
@@ -116,6 +117,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission.title = title;
     newSubmission.icon = req.file.buffer;
     newSubmission.author = req.user._id;
+    newSubmission.price = price;
     //newSubmission.upvotes;
 
     // save the user

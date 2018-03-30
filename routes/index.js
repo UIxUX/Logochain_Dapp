@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var Submission 		= require('./models/submission');
+var Submission 		= require('../models/submission');
 
 const fs = require('fs');
 
@@ -46,6 +46,7 @@ router.get('/', function(req, res, next) {
     }
 
     Submission.find({}, function(err, submissions) {
+        console.log('All submissions: ' + submissions);
         res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn, submissions: submissions  });
     });
 
