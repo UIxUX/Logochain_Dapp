@@ -1,3 +1,9 @@
+//Relevante Github Repositories:
+//https://github.com/UIxUX/Logochain_Nodejs
+//https://github.com/UIxUX/logochain
+//
+
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -17,8 +23,7 @@ var storage = multer.diskStorage(
     {
         destination: 'uploads/',
         filename: function ( req, file, cb ) {
-            //req.body is empty...
-            //How could I get the new_file_name property sent from client here?
+
             cb( null, file.originalname);
         }
     }
@@ -52,8 +57,7 @@ app.use(function(req,res,next){
   next();
 });
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(logger('dev'));
@@ -199,7 +203,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-
 
 
