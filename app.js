@@ -102,6 +102,27 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
         } );
     }
 
+    console.log("price is " + req.body.price + "   title is " + req.body.title);
+
+    var newSubmission            = new Submission();
+
+    var title = req.body.title;
+
+    // set the submissions attributes
+    newSubmission._id = mongoose.Types.ObjectId();
+
+    newSubmission.title = title;
+    newSubmission.icon = req.file.buffer;
+    newSubmission.author = req.user._id;
+    newSubmission.upvotes;
+
+    // save the user
+    newSubmission.save(function(err) {
+        if (err)
+            throw err;
+        return done(null, newUser);
+    });
+
     return res.status( 200 ).send( req.file );
 
 });
