@@ -162,8 +162,8 @@
   Dropzone.autoDiscover = false;
   var dZone = new Dropzone("#dropzone-example", {url: "/upload",
       maxFiles: 1,
-      acceptedFiles: 'image/*',
-      dictInvalidFileType: 'This form only accepts images.',
+      acceptedFiles: 'image/jpeg',
+      dictInvalidFileType: 'This form only accepts JPG images.',
       clickable: true
   });
   dZone.on("sending", function(file, xhr, data){
