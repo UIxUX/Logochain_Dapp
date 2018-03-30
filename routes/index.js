@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-
+var Submission 		= require('./models/submission');
 
 const fs = require('fs');
 
@@ -45,9 +45,9 @@ router.get('/', function(req, res, next) {
         loggedIn = true;
     }
 
-  res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn  });
-
-
+    Submission.find({}, function(err, submissions) {
+        res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn, submissions: submissions  });
+    });
 
 });
 
