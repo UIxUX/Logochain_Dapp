@@ -1,3 +1,16 @@
+//In order to get the index of the relevant selected submission when upvoting
+var selectedSubmission = -1;
+var g = document.getElementById('submissionsList');
+for (var i = 0, len = g.children.length; i < len; i++)
+{
+    (function(index){
+        g.children[i].onclick = function(){
+            selectedSubmission = index;
+        }
+    })(i);
+}
+
+
 //Upload clicked
 $("#uploadButton").click(function(e){
     e.preventDefault();
@@ -7,6 +20,7 @@ $("#uploadButton").click(function(e){
 
     // }, 3000);
 });
+
 
 //Upload clicked
 $(".upvoteButton").click(function(e){
@@ -64,7 +78,7 @@ function postUpvote() {
     $.ajax({
         type: "POST",
         url: url,
-        data: $(".upvoteForm").serialize(),
+        data: $(".upvoteForm").serialize() + "&selectedIndex=" + selectedSubmission,
         success: function(data) {
             alert("Upvoted!");
             fadeOutUpvoteModal();
