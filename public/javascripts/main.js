@@ -66,7 +66,7 @@ function postUpvote() {
         url: url,
         data: $(".upvoteForm").serialize(),
         success: function(data) {
-            alert("Account created!");
+            alert("Upvoted!");
             fadeOutUpvoteModal();
             fadeOutDarkLayer();
 
