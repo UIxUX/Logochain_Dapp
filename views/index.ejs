@@ -160,7 +160,12 @@
 <script type="text/javascript">
 
   Dropzone.autoDiscover = false;
-  var dZone = new Dropzone("#dropzone-example", {url: "/upload"});
+  var dZone = new Dropzone("#dropzone-example", {url: "/upload",
+      maxFiles: 1,
+      acceptedFiles: 'image/*',
+      dictInvalidFileType: 'This form only accepts images.',
+      clickable: true
+  });
   dZone.on("sending", function(file, xhr, data){
   data.append("price", $("#priceS")[0].value);
   data.append("title", $("#titleS")[0].value);
