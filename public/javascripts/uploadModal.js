@@ -35,6 +35,7 @@ uploadModal.innerHTML  =  '<div id="uploadModal" class="round shadow modalView">
 ;
 body.appendChild( uploadModal );
 $("#uploadModal").css("opacity", "0");
+$("#uploadModal").css("display", "none");
 
 
 function fadeInUploadModal() {
