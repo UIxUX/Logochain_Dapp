@@ -16,7 +16,7 @@ var bcrypt   = require('bcrypt-nodejs');
 var SubmissionSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title: String,
-    icon: Buffer,
+    icon: { data: Buffer, contentType: String },
     price: Number,
     author: {
         type: mongoose.Schema.Types.ObjectId,

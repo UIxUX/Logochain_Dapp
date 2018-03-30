@@ -26,7 +26,7 @@ uploadModal.innerHTML  =  '<div id="uploadModal" class="round shadow modalView">
     '<label>Price</label><br>' +
     '<input type="text" id="priceS" name="price">' +
     '<br>' +
-    '<form id="dropzone-example" method="post" action="/upload" class="dropzone">' +
+    '<form id="dropzone-example" method="post" action="/upload" class="dropzone" enctype="multipart/form-data" >' +
     '<div class="fallback">' +
     '<input name="file" type="file" multiple />' +
     '</div>' +

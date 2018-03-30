@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash    = require('connect-flash');
+var fs = require("fs");
 global.passport = require('passport');
 
 var expressValidator = require("express-validator");
@@ -12,7 +13,17 @@ var expressValidator = require("express-validator");
 //Uploading
 var Submission 		= require('./models/submission');
 var multer 		=		require( 'multer' );
-var upload 		= 	multer( { dest: 'uploads/' } );
+var storage = multer.diskStorage(
+    {
+        destination: 'uploads/',
+        filename: function ( req, file, cb ) {
+            //req.body is empty...
+            //How could I get the new_file_name property sent from client here?
+            cb( null, file.originalname);
+        }
+    }
+);
+var upload 		= 	multer( { storage: storage } );
 var sizeOf 		= 	require( 'image-size' );
 require( 'string.prototype.startswith' );
 
@@ -30,6 +41,7 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: false
 app.use(global.passport.initialize());
 app.use(global.passport.session());
 app.use(flash());
+
 
 
 // view engine setup
@@ -104,7 +116,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
         } );
     }
 
-    console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user);
+    console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user + "Filename : " + req.file.path);
 
     var newSubmission            = new Submission();
 
@@ -115,7 +127,8 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission._id = mongoose.Types.ObjectId();
 
     newSubmission.title = title;
-    newSubmission.icon = req.file.buffer;
+    newSubmission.icon.data = fs.readFileSync(req.file.path); //req.file.buffer;
+    newSubmission.icon.contentType = req.file.mimetype;
     newSubmission.author = req.user._id;
     newSubmission.price = price;
     //newSubmission.upvotes;
@@ -153,3 +166,72 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+////////////////WEG
+/*
+express = require('express')
+    , router = express.Router()
+    , MongoClient = require('mongodb').MongoClient
+    , ObjectId = require('mongodb').ObjectId
+    , fs = require('fs-extra')
+    // Your mongodb or mLabs connection string
+    , url = 'mongodb://username:password@yourinstanced.mlab.com:29459/yourdb'
+    , multer = require('multer')
+    , util = require('util')
+    , upload = multer({limits: {fileSize: 2000000 },dest:'/uploads/'})
+// Default route http://localhost:3000/
+router.get('/', function(req, res){ res.render('index'); });
+// Form POST action handler
+router.post('/uploadpicture', upload.single('picture'), function (req, res){
+    if (req.file == null) {
+        // If Submit was accidentally clicked with no file selected...
+        res.render('index', { title:'Please select a picture file to submit!'); });
+} else {
+    MongoClient.connect(url, function(err, db){
+        // read the img file from tmp in-memory location
+        var newImg = fs.readFileSync(req.file.path);
+        // encode the file as a base64 string.
+        var encImg = newImg.toString('base64');
+        // define your new document
+        var newItem = {
+            description: req.body.description,
+            contentType: req.file.mimetype,
+            size: req.file.size,
+            img: Buffer(encImg, 'base64')
+        };
+        db.collection('yourcollectionname')
+            .insert(newItem, function(err, result){
+                if (err) { console.log(err); };
+                var newoid = new ObjectId(result.ops[0]._id);
+                fs.remove(req.file.path, function(err) {
+                    if (err) { console.log(err) };
+                    res.render('index', {title:'Thanks for the Picture!'});
+                });
+            });
+    });
+};
+});
+
+
+router.get('/picture/:picture', function(req, res){
+// assign the URL parameter to a variable
+    var filename = req.params.picture;
+// open the mongodb connection with the connection
+// string stored in the variable called url.
+    MongoClient.connect(url, function(err, db){
+        db.collection('yourcollectionname')
+        // perform a mongodb search and return only one result.
+        // convert the variabvle called filename into a valid
+        // objectId.
+            .findOne({'_id': ObjectId(filename)}, function(err, results){
+// set the http response header so the browser knows this
+// is an 'image/jpeg' or 'image/png'
+                res.setHeader('content-type', results.contentType);
+// send only the base64 string stored in the img object
+// buffer element
+                res.send(results.img.buffer);
+            });
+    });
+});
+*/
