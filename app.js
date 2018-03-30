@@ -10,6 +10,7 @@ global.passport = require('passport');
 var expressValidator = require("express-validator");
 
 //Uploading
+var Submission 		= require('./models/submission');
 var multer 		=		require( 'multer' );
 var upload 		= 	multer( { dest: 'uploads/' } );
 var sizeOf 		= 	require( 'image-size' );
@@ -25,7 +26,7 @@ mongoose.connect('mongodb://localhost/mongoose');
 // Configuring Passport
 require('./passport/passport')(global.passport);
 var session = require('express-session');
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 600000 }, resave: true, saveUninitialized: true }));
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: false }));
 app.use(global.passport.initialize());
 app.use(global.passport.session());
 app.use(flash());
@@ -44,11 +45,12 @@ app.use(function(req,res,next){
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieParser());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(expressValidator());
 
 
@@ -102,7 +104,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
         } );
     }
 
-    console.log("price is " + req.body.price + "   title is " + req.body.title);
+    console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user);
 
     var newSubmission            = new Submission();
 
@@ -114,13 +116,13 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission.title = title;
     newSubmission.icon = req.file.buffer;
     newSubmission.author = req.user._id;
-    newSubmission.upvotes;
+    //newSubmission.upvotes;
 
     // save the user
     newSubmission.save(function(err) {
         if (err)
             throw err;
-        return done(null, newUser);
+        //return done(null, newUser);
     });
 
     return res.status( 200 ).send( req.file );
