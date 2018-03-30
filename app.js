@@ -101,17 +101,24 @@ app.get('/logout', function(req, res) {
 //Upvote
 app.post('/upvote', function(req, res) {
 
-    var query = {'index':req.body.selectedIndex};
+    var query = {index: req.body.selectedIndex};
 
     var upvoterWalletID = req.body.upvotingWallet;
-    console.log("Upvoted Route with WalletID: " + upvoterWalletID);
+    console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex);
 
-    Submission.findOneAndUpdate(query, {upsert:true},
-        {'$addToSet': { upvotes: {
-                    'user': upvoterWalletID, 'createdAt': Date.now() } } },
+    Submission.findOneAndUpdate(query,
+        {$addToSet: { "upvotes": {
+                    user: upvoterWalletID, createdAt: Date.now() } } },  {upsert: true, new: true},
         function(err, sub){
 
-        if (err) return res.send(500, { error: err });
+        if (sub == null || sub == undefined) {
+            console.log("couldn't find sub.");
+        }
+
+        if (err) {
+            console.log("Error Upvoting.");
+            return res.sendStatus(500);
+        }
     });
 
 });

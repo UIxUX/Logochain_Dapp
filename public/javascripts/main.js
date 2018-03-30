@@ -52,7 +52,7 @@ upvoteModal.innerHTML  =  '<div id="upvoteModal" class="round shadow modalView">
     '        <button class="btn upvoteButtonModal round" onclick="postUpvote()">Upvote</button>\n' +
     '    </div>';
 
-var signupform = $('.upvoteForm');
+
 
 function fadeInUpvoteModal() {
     body.appendChild( upvoteModal );
