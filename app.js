@@ -99,6 +99,9 @@ app.get('/logout', function(req, res) {
 });
 
 
+
+// TO DELETE ALL DATA  - in Terminal: mongo mongoose --eval "db.dropDatabase();"
+
 //For Uploading a submission
 app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
 
@@ -127,7 +130,15 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission._id = mongoose.Types.ObjectId();
 
     newSubmission.title = title;
-    newSubmission.icon.data = fs.readFileSync(req.file.path); //req.file.buffer;
+
+
+
+    var newImg = fs.readFileSync(req.file.path); //req.file.buffer;
+    var encImg = newImg.toString('base64');
+
+
+
+    newSubmission.icon.data = Buffer(encImg, 'base64');
     newSubmission.icon.contentType = req.file.mimetype;
     newSubmission.author = req.user._id;
     newSubmission.price = price;
@@ -166,6 +177,9 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
 
 
 ////////////////WEG
