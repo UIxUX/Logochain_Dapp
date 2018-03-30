@@ -42,8 +42,6 @@ app.use(global.passport.initialize());
 app.use(global.passport.session());
 app.use(flash());
 
-
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -54,7 +52,6 @@ app.use(function(req,res,next){
   next();
 });
 
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -64,8 +61,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(expressValidator());
-
-
 
 // ROUTES
 var index = require('./routes/index');
@@ -120,9 +115,7 @@ app.post('/upvote', function(req, res) {
             return res.sendStatus(500);
         }
     });
-
 });
-
 
 
 // TO DELETE ALL DATA  - in Terminal: mongo mongoose --eval "db.dropDatabase();"
@@ -163,10 +156,8 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission.title = title;
 
 
-
     var newImg = fs.readFileSync(req.file.path); //req.file.buffer;
     var encImg = newImg.toString('base64');
-
 
 
     newSubmission.icon.data = encImg;

@@ -1,8 +1,3 @@
-'use strict';
-
-/**
- * Module dependencies.
- */
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
@@ -10,7 +5,7 @@ var bcrypt   = require('bcrypt-nodejs');
 
 
 /**
- * User Schema
+ * Submission Schema
  */
 
 var SubmissionSchema = new Schema({
