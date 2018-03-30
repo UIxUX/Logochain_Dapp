@@ -32,9 +32,13 @@ upvoteModal.innerHTML  =  '<div id="upvoteModal" class="round shadow modalView">
     '        <p>Upvote using your Ethereum wallet-id</p>\n' +
     '        <p class="smalltext">Enter your wallet-id in order to upvote - you’ll receive 5 upvotes every week!</p>\n' +
     '        <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src=\'your-alternative-image.png\'">\n' +
-    '        <input class="form-control searchBox mr-sm-2 ethIDBox" type="search" placeholder="Ethereum Public Key" aria-label="ID">\n' +
-    '        <button class="btn upvoteButtonModal round">Upvote</button>\n' +
+    '<form class="upvoteForm" method="post" action="/upvote">' +
+    '        <input class="form-control searchBox mr-sm-2 ethIDBox" type="text" name="upvotingWallet" placeholder="Ethereum Public Key" aria-label="ID">\n' +
+    '</form>' +
+    '        <button class="btn upvoteButtonModal round" onclick="postUpvote()">Upvote</button>\n' +
     '    </div>';
+
+var signupform = $('.upvoteForm');
 
 function fadeInUpvoteModal() {
     body.appendChild( upvoteModal );
@@ -49,6 +53,28 @@ function fadeOutUpvoteModal() {
             $("#upvoteModal").css("display", "none");
         }
     );
+}
+
+function postUpvote() {
+
+    console.log("postUpvote fired");
+
+    var url = '/upvote';
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: $(".upvoteForm").serialize(),
+        success: function(data) {
+            alert("Account created!");
+            fadeOutUpvoteModal();
+            fadeOutDarkLayer();
+
+
+        }, error: function(data) {
+            alert("Error! Try again.");
+        }
+    });
 }
 
 
