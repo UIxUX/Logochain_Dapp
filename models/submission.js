@@ -18,6 +18,7 @@ var SubmissionSchema = new Schema({
     title: String,
     icon: { data: Buffer, contentType: String },
     price: Number,
+    index: Number,
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

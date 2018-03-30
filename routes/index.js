@@ -3,38 +3,6 @@ var router = express.Router();
 
 var Submission 		= require('../models/submission');
 
-const fs = require('fs');
-
-
-/*
-
-function createDummyJSONArray() {
-
-}
-
-function IsJsonString(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
-}
-
-/* JSON test */
-/*
-function getDummyJSON() {
-    var rawdata = fs.readFileSync('../../json/iconsubmission.json');
-    var submissionObject = JSON.parse(rawdata);
-
-    submissionObject.iconname = "JAWDWAD";
-
-    return submissionObject;
-}
-/*
-
-
-
 
 
 /* GET home page. */

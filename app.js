@@ -100,17 +100,22 @@ app.get('/logout', function(req, res) {
 
 //Upvote
 app.post('/upvote', function(req, res) {
-    console.log("Upvoting Route");
 
-    /*
-    var query = {'username':req.body.selectedIndex};
-    req.newData.username = req.user.username;
-    MyModel.findOneAndUpdate(query, req.newData, {upsert:true}, function(err, doc){
+    var query = {'index':req.body.selectedIndex};
+
+    var upvoterWalletID = req.body.upvotingWallet;
+    console.log("Upvoted Route with WalletID: " + upvoterWalletID);
+
+    Submission.findOneAndUpdate(query, {upsert:true},
+        {'$addToSet': { upvotes: {
+                    'user': upvoterWalletID, 'createdAt': Date.now() } } },
+        function(err, sub){
+
         if (err) return res.send(500, { error: err });
-        return res.send("succesfully saved");
     });
-    */
+
 });
+
 
 
 // TO DELETE ALL DATA  - in Terminal: mongo mongoose --eval "db.dropDatabase();"
@@ -135,6 +140,12 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user + "Filename : " + req.file.path);
 
     var newSubmission            = new Submission();
+
+    Submission.count({}, function(err, count){
+        console.log( "Number of subs: ", count );
+
+        newSubmission.index = count;
+    });
 
     var title = req.body.title;
     var price = req.body.price;
