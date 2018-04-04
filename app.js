@@ -109,17 +109,13 @@ app.post('/upvote', function(req, res) {
     var options = {safe: true, upsert: true};
 
 
-
-    //var newUpvote = {walletID: upvoterWalletID, createdAt: Date.now()};
-
-    //console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex + "newUpvote : " + newUpvote.user + " at : " + newUpvote.createdAt);
-
-    Submission.find({}, function(err, submissions) {
+    Submission.find({'upvotes.walletID' : upvoterWalletID}, function(err, submissions) {
 
         console.log("subs : " + submissions);
         var sub = submissions[0];
         if (sub != null) {
-
+            console.log("***** Already upvoted with the same WalletID! *****");
+            return res.sendStatus(500);
         }
     });
 
@@ -134,64 +130,6 @@ app.post('/upvote', function(req, res) {
             }
     });
 
-
-    /*
-    Submission
-        .findOneAndUpdate(
-            query,
-            update,
-            options,
-            function(err, sub) {
-
-                if (sub == null || sub == undefined) {
-                    console.log("couldn't find sub.");
-                } else {
-                    console.log("Sub: " + sub);
-                }
-                console.log("Sub: " + sub);
-
-                if (err) {
-                    console.log("Error Upvoting.");
-                    return res.sendStatus(500);
-                }
-            }
-        );
-    */
-
-    /*
-    Submission
-        .findOne(query)
-        .populate({
-            path: 'upvotes',
-            populate: {
-                path: 'upvotes',
-
-            }
-        })
-        .exec(function(err, data){
-            if (err) return handleError(err);
-            console.log("DATA : " + data);
-        });
-     */
-
-     /*   Submission.findOneAndUpdate(query,
-             {$addToSet: { "upvotes": {
-                        user: upvoterWalletID, createdAt: Date.now() } } },  {safe: true, upsert: true, new:true},
-            {$inc : {"users.$.counter" : 1} },
-            function(err, sub){
-
-            if (sub == null || sub == undefined) {
-                console.log("couldn't find sub.");
-            } else {
-                console.log("Sub: " + sub);
-            }
-
-            if (err) {
-                console.log("Error Upvoting.");
-                return res.sendStatus(500);
-            }
-        });
-     */
 });
 
 
