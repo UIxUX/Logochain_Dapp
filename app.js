@@ -91,6 +91,7 @@ app.use('/signin', signin);
 
 //Logout
 app.get('/logout', function(req, res) {
+    //req.session.destroy();
     req.logout();
     req.flash('flash', 'You successfully logged out.');
     res.redirect('/');

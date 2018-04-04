@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var User       		= require('../models/user');
 
 /* GET account page. */
 router.get('/', isLoggedIn, function(req, res) {
@@ -12,15 +13,25 @@ router.get('/', isLoggedIn, function(req, res) {
 router.delete('/delete', isLoggedIn, function (req, res) {
 
 
-    var loggedIn = false;
-
     if (req.isAuthenticated()) {
-        loggedIn = true;
+        User.findOneAndRemove({ _id: req.user._id }, function(err) {
+            if (!err) {
+                console.log("DELETE *****");
+
+
+                req.logout();
+
+                res.sendStatus(200);
+            }
+            else {
+                console.log("DELETE ////////");
+
+                res.sendStatus(500);
+            }
+        });
     }
 
-    req.flash('flash', 'Your account got successfully deleted.');
 
-    res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn  });
 });
 
 

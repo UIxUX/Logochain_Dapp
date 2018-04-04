@@ -145,6 +145,11 @@ h2 {
 
 /* Custom element styles */
 
+.search {
+  opacity: 0.0;
+  /* display: none; */
+}
+
 .navbar {
   padding-left: 60px;
   padding-top: 36px;

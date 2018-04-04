@@ -83,7 +83,7 @@ function postUpvote() {
             alert("Upvoted!");
             fadeOutUpvoteModal();
             fadeOutDarkLayer();
-
+            window.location = "/";
 
         }, error: function(data) {
             alert("Error! Try again.");

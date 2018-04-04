@@ -8,7 +8,18 @@ window.onload = function() {
         if (confirmation) {
             $.ajax({
                 type: 'DELETE',
-                url: '/account/delete'
+                url: '/account/delete',
+
+                success: function() {
+
+
+                    setTimeout( function() {
+                        window.location = "/";
+                    }, 500);
+
+                }, error: function() {
+                    alert("Error! Try again.");
+                }
             });
         } else {
             return false;

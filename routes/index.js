@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
     Submission.find({}, function(err, submissions) {
         //console.log('All submissions: ' + submissions);
-        res.render('index', { flash: req.flash('flash'), loggedIn: loggedIn, submissions: submissions  });
+        res.render('index', { flash: req.flash('flash'), loginMessage: req.flash('loginMessage'), loggedIn: loggedIn, submissions: submissions  });
     });
 
 });
