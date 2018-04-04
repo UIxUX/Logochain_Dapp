@@ -15,15 +15,15 @@ var SubmissionSchema = new Schema({
     price: Number,
     docindex: Number,
     author: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     buyer: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User'
     },
     upvotes: [{
-        user: { type : Schema.ObjectId, ref : 'User' },
+        walletID: {type: String, default : ''}, //{ type : Schema.ObjectId, ref : 'User' },
         createdAt: { type : Date, default : Date.now }
     }],
     created: {

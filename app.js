@@ -100,17 +100,28 @@ app.get('/logout', function(req, res) {
 //Upvote
 app.post('/upvote', function(req, res) {
 
+    var upvoterWalletID = req.body.upvotingWallet;
+
+    console.log("upvoterWalletID : " + upvoterWalletID );
+
     var query = {'docindex': req.body.selectedIndex};
-    var update = {$push: {"upvotes": { 'user': upvoterWalletID, 'createdAt': Date.now() }}};
+    var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() }}};
     var options = {safe: true, upsert: true};
 
 
-    var upvoterWalletID = req.body.upvotingWallet;
-    var newUpvote = {user: upvoterWalletID, createdAt: Date.now()};
+
+    //var newUpvote = {walletID: upvoterWalletID, createdAt: Date.now()};
 
     //console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex + "newUpvote : " + newUpvote.user + " at : " + newUpvote.createdAt);
 
+    Submission.find({}, function(err, submissions) {
 
+        console.log("subs : " + submissions);
+        var sub = submissions[0];
+        if (sub != null) {
+
+        }
+    });
 
     Submission
         .findOneAndUpdate(query, update, options).exec(function(err, sub){
@@ -203,7 +214,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
         } );
     }
 
-    console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user + "Filename : " + req.file.path);
+    //console.log("price is " + req.body.price + "   title is " + req.body.title + " req.user is " + req.user + "Filename : " + req.file.path);
 
     var newSubmission            = new Submission();
 
