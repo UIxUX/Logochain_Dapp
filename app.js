@@ -100,16 +100,36 @@ app.get('/logout', function(req, res) {
 //Upvote
 app.post('/upvote', function(req, res) {
 
-    var query = {indexinlist: req.body.selectedIndex};
+    var query = {'docindex': req.body.selectedIndex};
+    var update = {$push: {"upvotes": { 'user': upvoterWalletID, 'createdAt': Date.now() }}};
+    var options = {safe: true, upsert: true};
+
 
     var upvoterWalletID = req.body.upvotingWallet;
-    console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex);
+    var newUpvote = {user: upvoterWalletID, createdAt: Date.now()};
 
+    //console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex + "newUpvote : " + newUpvote.user + " at : " + newUpvote.createdAt);
+
+
+
+    Submission
+        .findOneAndUpdate(query, update, options).exec(function(err, sub){
+
+            if (err) {
+                console.log("Error Upvoting.");
+                return res.sendStatus(500);
+            } else {
+                return res.sendStatus(200);
+            }
+    });
+
+
+    /*
     Submission
         .findOneAndUpdate(
             query,
-            {$push: {"upvotes": { 'user': upvoterWalletID, 'createdAt': Date.now() }}},
-            {safe: true, upsert: true},
+            update,
+            options,
             function(err, sub) {
 
                 if (sub == null || sub == undefined) {
@@ -117,6 +137,7 @@ app.post('/upvote', function(req, res) {
                 } else {
                     console.log("Sub: " + sub);
                 }
+                console.log("Sub: " + sub);
 
                 if (err) {
                     console.log("Error Upvoting.");
@@ -124,6 +145,7 @@ app.post('/upvote', function(req, res) {
                 }
             }
         );
+    */
 
     /*
     Submission
@@ -193,7 +215,7 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
         indexSubmission = count;
     });
 
-    newSubmission.indexinlist = indexSubmission;
+    newSubmission.docindex = indexSubmission;
 
     var title = req.body.title;
     var price = req.body.price;
