@@ -13,7 +13,7 @@ var SubmissionSchema = new Schema({
     title: String,
     icon: { data: Buffer, contentType: String },
     price: Number,
-    index: Number,
+    indexinlist: Number,
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -33,6 +33,6 @@ var SubmissionSchema = new Schema({
 });
 
 
-var Submission = mongoose.model('Submission', SubmissionSchema);
+var Submission = mongoose.model('aSubmission', SubmissionSchema);
 
 module.exports = Submission;

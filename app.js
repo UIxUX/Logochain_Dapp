@@ -100,25 +100,65 @@ app.get('/logout', function(req, res) {
 //Upvote
 app.post('/upvote', function(req, res) {
 
-    var query = {index: req.body.selectedIndex};
+    var query = {indexinlist: req.body.selectedIndex};
 
     var upvoterWalletID = req.body.upvotingWallet;
     console.log("Upvoted Route with WalletID: " + upvoterWalletID + " and Index: " + req.body.selectedIndex);
 
-    Submission.findOneAndUpdate(query,
-        {$addToSet: { "upvotes": {
-                    user: upvoterWalletID, createdAt: Date.now() } } },  {upsert: true, new: true},
-        function(err, sub){
+    Submission
+        .findOneAndUpdate(
+            query,
+            {$push: {"upvotes": { 'user': upvoterWalletID, 'createdAt': Date.now() }}},
+            {safe: true, upsert: true},
+            function(err, sub) {
 
-        if (sub == null || sub == undefined) {
-            console.log("couldn't find sub.");
-        }
+                if (sub == null || sub == undefined) {
+                    console.log("couldn't find sub.");
+                } else {
+                    console.log("Sub: " + sub);
+                }
 
-        if (err) {
-            console.log("Error Upvoting.");
-            return res.sendStatus(500);
-        }
-    });
+                if (err) {
+                    console.log("Error Upvoting.");
+                    return res.sendStatus(500);
+                }
+            }
+        );
+
+    /*
+    Submission
+        .findOne(query)
+        .populate({
+            path: 'upvotes',
+            populate: {
+                path: 'upvotes',
+
+            }
+        })
+        .exec(function(err, data){
+            if (err) return handleError(err);
+            console.log("DATA : " + data);
+        });
+     */
+
+     /*   Submission.findOneAndUpdate(query,
+             {$addToSet: { "upvotes": {
+                        user: upvoterWalletID, createdAt: Date.now() } } },  {safe: true, upsert: true, new:true},
+            {$inc : {"users.$.counter" : 1} },
+            function(err, sub){
+
+            if (sub == null || sub == undefined) {
+                console.log("couldn't find sub.");
+            } else {
+                console.log("Sub: " + sub);
+            }
+
+            if (err) {
+                console.log("Error Upvoting.");
+                return res.sendStatus(500);
+            }
+        });
+     */
 });
 
 
@@ -145,11 +185,15 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
 
     var newSubmission            = new Submission();
 
+    var indexSubmission = 0;
+
     Submission.count({}, function(err, count){
         console.log( "Number of subs: ", count );
 
-        newSubmission.index = count;
+        indexSubmission = count;
     });
+
+    newSubmission.indexinlist = indexSubmission;
 
     var title = req.body.title;
     var price = req.body.price;
@@ -168,10 +212,12 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
     newSubmission.icon.contentType = req.file.mimetype;
     newSubmission.author = req.user._id;
     newSubmission.price = price;
+    //newSubmission.index = price;
     //newSubmission.upvotes;
 
     // save the user
     newSubmission.save(function(err) {
+
         if (err)
             throw err;
         //return done(null, newUser);
