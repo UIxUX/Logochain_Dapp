@@ -102,16 +102,26 @@ app.post('/upvote', function(req, res) {
 
     var upvoterWalletID = req.body.upvotingWallet;
 
-    console.log("upvoterWalletID : " + upvoterWalletID );
+    //console.log("upvoterWalletID : " + upvoterWalletID );
+
 
     var query = {'docindex': req.body.selectedIndex};
     var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() }}};
     var options = {safe: true, upsert: true};
 
+    /*
+    if (req.isAuthenticated()) {
+        if (req.user != null) {
+            console.log("Req.user.walletID" + req.user.walletID);
+            update = {$push: {"upvotes": { 'walletID':  "" + req.user.walletID, 'createdAt': Date.now() }}};
+        }
+    }
+    */
+
 
     Submission.find({'upvotes.walletID' : upvoterWalletID}, function(err, submissions) {
 
-        console.log("subs : " + submissions);
+        console.log("upvoted subs with same walletID : " + submissions);
         var sub = submissions[0];
         if (sub != null) {
             console.log("***** Already upvoted with the same WalletID! *****");
@@ -126,7 +136,7 @@ app.post('/upvote', function(req, res) {
                 console.log("Error Upvoting.");
                 return res.sendStatus(500);
             } else {
-                return res.sendStatus(200);
+                return res.redirect(200, "/");
             }
     });
 
