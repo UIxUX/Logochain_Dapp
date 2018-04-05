@@ -71,27 +71,16 @@
   <div class="mainSubmissionsContainer" class="group">
     <div class="allSubmissionsContainer">
       <ul class="submissionsList">
+
+          <% for(var i=0; i< upvotedSubs.length; i++) {%>
         <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="data:image/jpeg;base64, <%=submissions[i].icon.data %>" alt="Your Logo Alt" >
+          <h4><%=upvotedSubs[i].title %></h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" > <%=upvotedSubs[i].price %> Ether</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ <%=upvotedSubs[i].upvotes.length %> Upvote</button>
           <button class="btn buyButton round inSubmissionElement">Buy</button>
         </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
+          <%} %>
         <!-- Test -->
 
       </ul>
@@ -111,27 +100,16 @@
   <div class="mainSubmissionsContainer" class="group">
     <div class="allSubmissionsContainer">
       <ul class="submissionsList">
+
+          <% for(var i=0; i< uploadedSubs.length; i++) {%>
         <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="data:image/jpeg;base64, <%=submissions[i].icon.data %>" alt="Your Logo Alt" >
+          <h4><%=uploadedSubs[i].title %></h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" > <%=uploadedSubs[i].price %> Ether</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ <%=uploadedSubs[i].upvotes.length %> Upvote</button>
           <button class="btn buyButton round inSubmissionElement">Buy</button>
         </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
+          <%} %>
         <!-- Test -->
 
       </ul>
@@ -150,27 +128,16 @@
   <div class="mainSubmissionsContainer" class="group">
     <div class="allSubmissionsContainer">
       <ul class="submissionsList">
+
+          <% for(var i=0; i< boughtSubs.length; i++) {%>
         <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
+          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="data:image/jpeg;base64, <%=submissions[i].icon.data %>" alt="Your Logo Alt" >
+          <h4><%=boughtSubs[i].title %></h4>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" > <%=boughtSubs[i].price %> Ether</h6>
+          <button class="btn upvoteButton round inSubmissionElement">▴ <%=boughtSubs[i].upvotes.length %> Upvote</button>
           <button class="btn buyButton round inSubmissionElement">Buy</button>
         </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
-        <li class="submission round">
-          <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'">
-          <h4>Cool Grandpa Icon</h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" onerror="this.src='your-alternative-image.png'"> 0.212 Eth</h6>
-          <button class="btn upvoteButton round inSubmissionElement">▴ 16 Upvote</button>
-          <button class="btn buyButton round inSubmissionElement">Buy</button>
-        </li>
+          <%} %>
         <!-- Test -->
 
       </ul>

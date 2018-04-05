@@ -2,11 +2,28 @@ var express = require('express');
 var router = express.Router();
 
 var User       		= require('../models/user');
+var Submission      = require('../models/submission');
 
 /* GET account page. */
 router.get('/', isLoggedIn, function(req, res) {
+
+    var upvotedSubs = {};
+    var boughtSubs = {};
+    var uploadedSubs = {};
+
+    Submission.find({'upvotes.walletID' : req.user.walletID}, function(err, submissions) {
+
+        console.log("req.user.walletID: " + req.user.walletID);
+        if (!err) {
+            console.log("upvoted subs with same walletID : " + submissions);
+            upvotedSubs = submissions;
+        } else {
+            console.log("couldnt find upvoted submissions.");
+        }
+    });
+
     console.log('Rendering Account..');
-    res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username} );
+    res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
 });
 
 /* Deleting user. */

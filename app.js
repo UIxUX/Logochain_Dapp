@@ -126,20 +126,22 @@ app.post('/upvote', function(req, res) {
         var sub = submissions[0];
         if (sub != null) {
             console.log("***** Already upvoted with the same WalletID! *****");
-            return res.sendStatus(500);
+            //return res.sendStatus(500);
+        } else {
+
+            Submission
+                .findOneAndUpdate(query, update, options).exec(function(err, sub){
+
+                if (err) {
+                    console.log("Error Upvoting.");
+                    return res.sendStatus(500);
+                } else {
+                    return res.redirect(200, "/");
+                }
+            });
         }
     });
 
-    Submission
-        .findOneAndUpdate(query, update, options).exec(function(err, sub){
-
-            if (err) {
-                console.log("Error Upvoting.");
-                return res.sendStatus(500);
-            } else {
-                return res.redirect(200, "/");
-            }
-    });
 
 });
 
