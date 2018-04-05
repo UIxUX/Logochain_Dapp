@@ -106,7 +106,7 @@ app.post('/upvote', function(req, res) {
     //console.log("upvoterWalletID : " + upvoterWalletID );
 
 
-    var query = {'docindex': req.body.selectedIndex};
+    var query = {'_id': req.body.selectedID};
     var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() }}};
     var options = {safe: true, upsert: true};
 
@@ -122,7 +122,7 @@ app.post('/upvote', function(req, res) {
 
     Submission.find({'upvotes.walletID' : upvoterWalletID}, function(err, submissions) {
 
-        console.log("upvoted subs with same walletID : " + submissions);
+
         var sub = submissions[0];
         if (sub != null) {
             console.log("***** Already upvoted with the same WalletID! *****");

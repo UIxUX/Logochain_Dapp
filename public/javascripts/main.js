@@ -89,7 +89,7 @@ function postUpvote() {
     $.ajax({
         type: "POST",
         url: url,
-        data: $(".upvoteForm").serialize() + "&selectedIndex=" + selectedSubmission,
+        data: $(".upvoteForm").serialize() + "&selectedID=" + selectedSubmissionID,
         success: function(data) {
             alert("Upvoted!");
             fadeOutUpvoteModal();
