@@ -36,7 +36,7 @@ module.exports = function(passport) {
 
 
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+                    return done(null, false, req.flash('signupMessage', 'That walletID is already taken.'));
                 } else {
 
                     var newUser            = new User();
