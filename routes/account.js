@@ -25,7 +25,6 @@ router.get('/', isLoggedIn, function(req, res) {
 
         Submission.find({'author' : req.user._id.toString()}, function(err, uploadedsubmissions) {
 
-
             if (!err) {
                 uploadedSubs = uploadedsubmissions;
                 //console.log("upvoted subs with same walletID : " + upvotedSubs);

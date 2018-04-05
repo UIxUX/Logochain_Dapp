@@ -1,7 +1,7 @@
 //Relevante Github Repositories:
 //https://github.com/UIxUX/Logochain_Nodejs
 //https://github.com/UIxUX/logochain
-//
+//https://docs.google.com/document/d/1mvqPtnLEe7Fp3o4w939bMveb5SvMQHLwAACaK6F8Qtg/edit?usp=sharing
 
 
 var express = require('express');
@@ -126,7 +126,6 @@ app.post('/upvote', function(req, res) {
         var sub = submissions[0];
         if (sub != null) {
             console.log("***** Already upvoted with the same WalletID! *****");
-            //return res.sendStatus(500);
         } else {
 
             Submission
