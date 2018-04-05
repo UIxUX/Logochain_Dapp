@@ -140,8 +140,6 @@ app.post('/upvote', function(req, res) {
             });
         }
     });
-
-
 });
 
 

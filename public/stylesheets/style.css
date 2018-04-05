@@ -145,6 +145,18 @@ h2 {
 
 /* Custom element styles */
 
+.invisible {
+  font-size: 0.1px !important;
+  opacity: 0.0 !important;
+}
+
+.submissionid {}
+.submissionprice {}
+
+.submissionImg{}
+
+#upvoteModalImg {}
+
 .search {
   opacity: 0.0;
   /* display: none; */
