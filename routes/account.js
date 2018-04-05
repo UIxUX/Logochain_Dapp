@@ -11,18 +11,34 @@ router.get('/', isLoggedIn, function(req, res) {
     var boughtSubs = {};
     var uploadedSubs = {};
 
-    Submission.find({'upvotes.walletID' : req.user.walletID.toString()}, function(err, submissions) {
+    Submission.find({'upvotes.walletID' : req.user.walletID.toString()}, function(err, upvotedsubmissions) {
 
         console.log("req.user.walletID: " + req.user.walletID);
 
         if (!err) {
-            upvotedSubs = submissions;
+            upvotedSubs = upvotedsubmissions;
             //console.log("upvoted subs with same walletID : " + upvotedSubs);
-            console.log('Rendering Account.. Upvoted Subs length: ' + upvotedSubs[0]);
+            //console.log('Rendering Account.. Upvoted Subs length: ' + upvotedSubs[0]);
         } else {
             console.log("couldnt find upvoted submissions.");
         }
-        res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
+
+        Submission.find({'author' : req.user._id.toString()}, function(err, uploadedsubmissions) {
+
+
+            if (!err) {
+                uploadedSubs = uploadedsubmissions;
+                //console.log("upvoted subs with same walletID : " + upvotedSubs);
+                console.log('Rendering Account.. Upvoted Subs length: ' + uploadedSubs[0]);
+            } else {
+                console.log("couldnt find uploaded submissions.");
+            }
+
+            res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
+        });
+
+
+        //res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
     });
 
 
