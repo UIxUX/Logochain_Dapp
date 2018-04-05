@@ -11,19 +11,22 @@ router.get('/', isLoggedIn, function(req, res) {
     var boughtSubs = {};
     var uploadedSubs = {};
 
-    Submission.find({'upvotes.walletID' : req.user.walletID}, function(err, submissions) {
+    Submission.find({'upvotes.walletID' : req.user.walletID.toString()}, function(err, submissions) {
 
         console.log("req.user.walletID: " + req.user.walletID);
+
         if (!err) {
-            console.log("upvoted subs with same walletID : " + submissions);
             upvotedSubs = submissions;
+            //console.log("upvoted subs with same walletID : " + upvotedSubs);
+            console.log('Rendering Account.. Upvoted Subs length: ' + upvotedSubs[0]);
         } else {
             console.log("couldnt find upvoted submissions.");
         }
+        res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
     });
 
-    console.log('Rendering Account..');
-    res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
+
+
 });
 
 /* Deleting user. */
