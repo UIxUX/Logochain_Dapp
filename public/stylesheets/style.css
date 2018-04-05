@@ -637,7 +637,7 @@ footer {
   max-width: 600px;
   z-index: 10;
   position: fixed;
-  top: 20vh;
+  top: 5vh;
   background-color: white;
   padding: 50px;
   text-align: center;
@@ -697,13 +697,17 @@ footer {
   padding: 2px !important;
   margin-top: 12px;
 }
-}
+
 
 .modalView > .btn {
   padding: 2px !important;
 }
 
 #upvoteModal > .btn {
+  padding: 2px !important;
+}
+
+#signupModal > .btn {
   padding: 2px !important;
 }
 
@@ -753,7 +757,7 @@ footer {
   max-width: 600px;
   z-index: 10;
   position: fixed;
-  top: 20vh;
+  top: 5vh;
   background-color: white;
   padding: 50px;
   text-align: center;
@@ -767,7 +771,7 @@ footer {
   max-width: 600px;
   z-index: 10;
   position: fixed;
-  top: 20vh;
+  top: 5vh;
   background-color: white;
   padding: 50px;
   text-align: center;

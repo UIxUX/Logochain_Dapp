@@ -50,14 +50,16 @@ function fadeInSigninModal() {
 
         '<form class="signin" method="post" action="/signin">' +
         '<label>Wallet-ID</label><br>' +
-        '<input type="text" name="walletID"' +
+        '<input class="round" type="text" name="walletID"' +
+        '<br>' +
+        '<br>' +
         '<br>' +
         '<label>Password</label><br>' +
+        '<input class="round" type="password" name="password">' +
         '<br>' +
-        '<input type="password" name="password">' +
         '<br>' +
 
-        '<input type="submit" value="Submit">' +
+        '<input class="round" type="submit" value="Submit">' +
 
         '</form>' +
     '    </div>';

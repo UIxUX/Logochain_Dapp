@@ -2,32 +2,7 @@
 
 var signupform = $('.signup');
 
-signupform.on("submit", signupform, function(e){
-    e.preventDefault();
-    console.log();
 
-    var url = '/signup';
-
-
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: $(".signup").serialize(),
-        success: function(data) {
-            alert("Account created!");
-            fadeOutSignupModal();
-            fadeOutDarkLayer();
-            setTimeout( function() {
-                window.location.href = "/account";
-            }, 500);
-
-
-        }, error: function(data) {
-            alert("Error! Try again.");
-            //$(document).getElementById('signupModal').append('<p>Try again. An Error occured.</p>');
-        }
-    });
-});
 
 //Buybutton clicked
 $(".signupButton").click(function(e){
@@ -61,10 +36,6 @@ function fadeOutSignupModal() {
 function postSignup() {
 
        if ( signupValidation() ) {
-
-
-            alert("signupValidation() is : " + signupValidation());
-
 
            document.getElementsByClassName('signup')[0].submit();
 
@@ -125,17 +96,19 @@ function fadeInSignupModal() {
 
         '<form onchange="signupValidation()" onsubmit="signupValidation()" class="signup" method="post" action="/signup">' +
         '<label>Wallet-ID</label><br>' +
-        '<input type="text" name="walletID" id="walletIDField">' +
+        '<input type="text" name="walletID" class="round" id="walletIDField">' +
         '<br>' +
         '<br>' +
         '<label>Email</label><br>' +
-        '<input type="text" name="email" id="emailField">' +
+        '<input type="text" name="email" class="round" id="emailField">' +
+        '<br>' +
         '<br>' +
         '<label>Password</label><br>' +
-        '<input type="password" name="password" id="passwordField">' +
+        '<input type="password" name="password" class="round" id="passwordField">' +
+        '<br>' +
         '<br>' +
         '<label>Name</label><br>' +
-        '<input type="text" name="username" id="nameField">' +
+        '<input type="text" name="username" class="round" id="nameField">' +
         '<br>' +
 
 
