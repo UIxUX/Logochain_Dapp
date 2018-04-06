@@ -126,6 +126,7 @@ app.post('/upvote', function(req, res) {
         var sub = submissions[0];
         if (sub != null) {
             console.log("***** Already upvoted with the same WalletID! *****");
+            return res.sendStatus(500, "Already upvoted with the same WalletID!");
         } else {
 
             Submission

@@ -47,6 +47,24 @@ var body = document.getElementsByTagName('body')[0];
 
 var overlay = document.createElement('div');
 
+function upvoteValidation() {
+
+    var validated = true;
+
+    var wallet =document.getElementById('walletIDupvoteField').value.toString();
+
+    if(wallet.length != 42){
+        document.getElementById('walletIDupvoteField').style.borderColor = "red";
+        validated = false;
+    }else{
+        document.getElementById('walletIDupvoteField').style.borderColor = "green";
+    }
+
+    return validated;
+
+}
+
+
 var upvoteModal = document.createElement('div');
 
 upvoteModal.innerHTML  =  '<div id="upvoteModal" class="round shadow modalView">\n' +
@@ -54,7 +72,7 @@ upvoteModal.innerHTML  =  '<div id="upvoteModal" class="round shadow modalView">
     '        <p class="smalltext">Enter your wallet-id in order to upvote - you’ll receive 5 upvotes every week!</p>\n' +
     //'        <img id="upvoteModalImg" class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="/images/testSvg.svg" alt="Your Logo Alt" onerror="this.src=\'your-alternative-image.png\'">\n' +
     '<form class="upvoteForm" method="post" action="/upvote">' +
-    '        <input class="form-control searchBox mr-sm-2 ethIDBox" type="text" name="upvotingWallet" placeholder="Ethereum Public Key" aria-label="ID">\n' +
+    '        <input id="walletIDupvoteField" onchange="signupValidation()" class="form-control searchBox mr-sm-2 ethIDBox" type="text" name="upvotingWallet" placeholder="Ethereum Public Key" aria-label="ID">\n' +
     '</form>' +
     '        <button class="btn upvoteButtonModal round" onclick="postUpvote()">Upvote</button>\n' +
     '    </div>';
@@ -82,24 +100,29 @@ function fadeOutUpvoteModal() {
 
 function postUpvote() {
 
-    console.log("postUpvote fired");
 
-    var url = '/upvote';
+    if ( upvoteValidation() ) {
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: $(".upvoteForm").serialize() + "&selectedID=" + selectedSubmissionID,
-        success: function(data) {
-            alert("Upvoted!");
-            fadeOutUpvoteModal();
-            fadeOutDarkLayer();
-            window.location = "/";
+        var url = '/upvote';
 
-        }, error: function(data) {
-            alert("Error! Try again.");
-        }
-    });
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $(".upvoteForm").serialize() + "&selectedID=" + selectedSubmissionID,
+            success: function(data) {
+                alert("Upvoted!");
+                fadeOutUpvoteModal();
+                fadeOutDarkLayer();
+                window.location = "/";
+
+            }, error: function(xhr, status, error) {
+                alert("Error - Wallet-ID already upvoted this Logo." );
+            }
+        });
+
+    } else {
+        alert("Enter a correct Wallet-ID!");
+    }
 }
 
 
