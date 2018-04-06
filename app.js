@@ -103,43 +103,57 @@ app.post('/upvote', function(req, res) {
 
     var upvoterWalletID = req.body.upvotingWallet;
 
-    //console.log("upvoterWalletID : " + upvoterWalletID );
 
-
-    var query = {'_id': req.body.selectedID};
-    var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() }}};
-    var options = {safe: true, upsert: true};
-
-    /*
     if (req.isAuthenticated()) {
         if (req.user != null) {
             console.log("Req.user.walletID" + req.user.walletID);
-            update = {$push: {"upvotes": { 'walletID':  "" + req.user.walletID, 'createdAt': Date.now() }}};
+            upvoterWalletID = req.user.walletID;
         }
     }
-    */
 
 
-    Submission.find({'upvotes.walletID' : upvoterWalletID}, function(err, submissions) {
+    var query = {'_id': req.body.selectedID};
 
+    var options = {safe: true, upsert: true};
 
-        var sub = submissions[0];
-        if (sub != null) {
-            console.log("***** Already upvoted with the same WalletID! *****");
-            return res.sendStatus(500, "Already upvoted with the same WalletID!");
-        } else {
+    Submission.findOne({'_id' : req.body.selectedID}, function(err, submission) {
 
-            Submission
-                .findOneAndUpdate(query, update, options).exec(function(err, sub){
+        if (err) return res.sendStatus(500, "");
 
-                if (err) {
-                    console.log("Error Upvoting.");
-                    return res.sendStatus(500);
-                } else {
-                    return res.redirect(200, "/");
+        var price = submission.price;
+        var amountVotes = submission.upvotes.length;
+        console.log("****PRICE: " + price);
+
+        Submission.find({'upvotes.walletID' : upvoterWalletID}, function(err, submissions) {
+            var subs = submissions;
+            if (subs > 5) {
+                console.log("***** Already upvoted with the same WalletID more than 5 times! *****");
+                return res.sendStatus(500, "Already upvoted with the same WalletID more than 5 times!");
+            } else {
+
+                for (sub in subs) {
+                    if (sub._id == selectedID) {
+                        console.log("***** Already upvoted with the same WalletID! *****");
+                        return res.sendStatus(500, "Already upvoted with the same WalletID!");
+                    }
                 }
-            });
-        }
+
+                var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() } }, $set: { 'price': price * Math.pow(1.01, amountVotes+1) }};
+                console.log("NEW PRICE: " + price * Math.pow(1.01, amountVotes+1));
+
+                Submission
+                    .findOneAndUpdate(query, update, options).exec(function(err, sub){
+
+                    if (err) {
+                        console.log("Error Upvoting.");
+                        return res.sendStatus(500);
+                    } else {
+                        return res.redirect(200, "/");
+                    }
+                });
+            }
+        });
+
     });
 });
 

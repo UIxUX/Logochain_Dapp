@@ -116,7 +116,7 @@ function postUpvote() {
                 window.location = "/";
 
             }, error: function(xhr, status, error) {
-                alert("Error - Wallet-ID already upvoted this Logo." );
+                alert("Error." );
             }
         });
 
