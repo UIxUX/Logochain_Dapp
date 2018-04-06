@@ -6,10 +6,15 @@
 <script type="text/javascript">
     var isLoggedIn = <%= loggedIn %>;
     var walletID = '<%= personalWalletID %>';
+
 </script>
 
 <% include header %>
 <body>
+
+
+
+
 <header id="logochainHeader">
 
   <div class="flash">
@@ -186,6 +191,43 @@
       location.reload();
       //window.location = "/";
   });
+
+
+</script>
+
+<script type="text/javascript">
+
+    //TEST only for now.
+    window.addEventListener('load', function() {
+
+        if (typeof web3 !== 'undefined') {
+            alert("Metamask installiert.");
+            var provider = web3.currentProvider;
+        } else {
+            alert("You need to install Metamask.io in order to be able to buy Logos.");
+        }
+
+        web3.version.getNetwork((err, netId) => {
+            if (netId != 4) {}
+        });
+
+        this.contract = web3.eth.contract(metaFrontAbi).at(metaFrontAddress);
+
+    });
+
+    $(".buyButton").click(function () {
+      alert("Buy");
+        let contract = web3.eth.contract(metaFrontAbi).at(metaFrontAddress);
+        let input = 1;
+        contract.setNum(input, { from: web3.eth.accounts[0] }, (err, resp) => {
+            if (err == null) {
+                alert("success.");
+            }
+        });
+    });
+
+
+
 
 
 </script>
