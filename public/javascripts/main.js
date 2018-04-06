@@ -33,13 +33,57 @@ $("#uploadButton").click(function(e){
 $(".upvoteButton").click(function(e){
     e.preventDefault();
 
-    setTimeout(function () {
-        fadeInDarkLayer();
-    }, 0);
+    if (isLoggedIn) {
 
-    setTimeout(function () {
-        fadeInUpvoteModal();
-    }, 200);
+        selectedSubmissionID = document.getElementById('submissionsList').children[selectedSubmission].getElementsByClassName('submissionid')[0].innerHTML;
+
+        alert("WalletID: " + walletID + " selectedSubmissionID: " + selectedSubmissionID);
+        var form = document.createElement("form");
+        var walletIDField = document.createElement("input");
+        var selectedIDField = document.createElement("input"); //"&selectedID=" + selectedSubmissionID,
+
+        form.method = "POST";
+        form.action = "/upvote";
+
+        form.setAttribute("id", "hiddenupvoteform");
+
+        walletIDField.value= walletID.toString();
+        walletIDField.name="upvotingWallet";
+        form.appendChild(walletIDField);
+
+        selectedIDField.value= selectedSubmissionID;
+        selectedIDField.name="selectedID";
+        form.appendChild(selectedIDField);
+
+        form.style.opacity = '0.0';
+        form.style.height = '0.0px';
+
+        document.body.appendChild(form);
+
+        var url = '/upvote';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $('#hiddenupvoteform').serialize() + "&selectedID=" + selectedSubmissionID,
+            success: function(data) {
+                alert("Upvoted!");
+                window.location = "/";
+
+            }, error: function(xhr, status, error) {
+                alert("Error." );
+            }
+        });
+
+
+    } else {
+        setTimeout(function () {
+            fadeInDarkLayer();
+        }, 0);
+
+        setTimeout(function () {
+            fadeInUpvoteModal();
+        }, 200);
+    }
 
 });
 
