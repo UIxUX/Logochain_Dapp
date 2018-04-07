@@ -16,6 +16,9 @@ global.passport = require('passport');
 
 var expressValidator = require("express-validator");
 
+//Finding User
+var User = require('./models/user');
+
 //Uploading
 var Submission 		= require('./models/submission');
 var multer 		=		require( 'multer' );
@@ -223,6 +226,53 @@ app.post( '/upload', upload.single( 'file' ), function( req, res, next ) {
 
 });
 
+// API for Smart Contract
+//
+//Works
+app.get('/api/getprice/:id', function(req, res) {
+    var id = req.params.id;
+
+    //Find Submission with SubmissionID
+    Submission.findOne({'_id' : id}, function(err, submission) {
+
+        if (err) return res.send("Not found");
+
+        var price = [submission.price];
+        console.log("****PRICE: " + price);
+
+        return res.send(price);
+    });
+});
+
+//Works
+app.get('/api/getrecipient/:id', function(req, res) {
+    var id = req.params.id;
+
+    //Find Submission with SubmissionID
+    Submission.findOne({'_id' : id}, function(err, submission) {
+
+        if (err) return res.send("Not found");
+
+        var recipientid = submission.author;
+        console.log("****recipientid " + recipientid);
+
+        //Find User with SubmissionAuthorID
+        User.findById( recipientid, function(err, user) {
+
+            if (err)
+                return res.send("Not found");;
+
+            if (user) {
+                var recipientwalletid = [user.walletID];
+
+                return res.send(recipientwalletid);
+            } else {
+                return res.send("Not found");
+            }
+        });
+
+    });
+});
 
 
 
