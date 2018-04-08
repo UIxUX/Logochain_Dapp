@@ -218,15 +218,16 @@
     $(".buyButton").click(function () {
       alert("Buy");
         let contract = web3.eth.contract(metaFrontAbi).at(metaFrontAddress);
-        let input = 1;
-        contract.setNum(input, { from: web3.eth.accounts[0] }, (err, resp) => {
+        let allegedAuthor = "0x1a06810ca985e484aa6535ec061f85b524cbc632";
+        let subIDToBeBought = selectedSubmissionID;
+        let priceOfSub = selectedSubmissionPrice;
+        //{ from: web3.eth.accounts[0] }
+        contract.purchaseLogo(allegedAuthor, subIDToBeBought, { from: web3.eth.accounts[0], gas:1000000, value: web3.toWei(priceOfSub, "ether") } , (err, resp) => {
             if (err == null) {
                 alert("success.");
             }
         });
     });
-
-
 
 </script>
 

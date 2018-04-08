@@ -270,7 +270,6 @@ app.get('/api/getrecipient/:id', function(req, res) {
                 return res.send("Not found");
             }
         });
-
     });
 });
 

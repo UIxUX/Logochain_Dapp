@@ -1,12 +1,21 @@
 //Test only for now.
 
-metaFrontAddress = "0x4c4ec35c9a77ca12a12741c46ea667485405a40d";
+metaFrontAddress = "0x1d0d034f39c162eddd28934d85bd1cc5ba7bb1b2";
 
 metaFrontAbi = [
     {
         "constant": false,
-        "inputs": [],
-        "name": "kill",
+        "inputs": [
+            {
+                "name": "myid",
+                "type": "bytes32"
+            },
+            {
+                "name": "result",
+                "type": "string"
+            }
+        ],
+        "name": "__callback",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -16,11 +25,19 @@ metaFrontAbi = [
         "constant": false,
         "inputs": [
             {
-                "name": "_num",
-                "type": "int256"
+                "name": "myid",
+                "type": "bytes32"
+            },
+            {
+                "name": "result",
+                "type": "string"
+            },
+            {
+                "name": "proof",
+                "type": "bytes"
             }
         ],
-        "name": "setNum",
+        "name": "__callback",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -33,31 +50,21 @@ metaFrontAbi = [
         "type": "constructor"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "num",
-        "outputs": [
+        "constant": false,
+        "inputs": [
             {
-                "name": "",
-                "type": "int256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "constant": true,
-        "inputs": [],
-        "name": "user",
-        "outputs": [
-            {
-                "name": "",
+                "name": "receiver",
                 "type": "address"
+            },
+            {
+                "name": "subID",
+                "type": "string"
             }
         ],
-        "payable": false,
-        "stateMutability": "view",
+        "name": "purchaseLogo",
+        "outputs": [],
+        "payable": true,
+        "stateMutability": "payable",
         "type": "function"
     }
 ];
