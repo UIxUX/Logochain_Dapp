@@ -274,6 +274,52 @@ app.get('/api/getrecipient/:id', function(req, res) {
 });
 
 
+//GET JSON
+app.get('/api/getpurchasedata/:id', function(req, res) {
+    var id = req.params.id;
+
+    var data = {
+        "purchase": {
+            "recipient": "",
+            "id": id,
+            "price" : 0
+        }
+    };
+
+    //Find Submission with SubmissionID
+    Submission.findOne({'_id' : id}, function(err, submission) {
+
+        if (err) return res.send("Not found");
+
+        var recipientid = submission.author;
+        console.log("****recipientid " + recipientid);
+
+        data.purchase.price = submission.price;
+
+        //Find User with SubmissionAuthorID
+        User.findById( recipientid, function(err, user) {
+
+            if (err)
+                return res.send("Not found");;
+
+            if (user) {
+                var recipientwalletid = user.walletID;
+
+                data.purchase.recipient = recipientwalletid;
+
+                return res.send(data);
+
+            } else {
+                return res.send("Not found");
+            }
+        });
+    });
+});
+
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
