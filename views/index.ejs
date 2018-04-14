@@ -222,6 +222,8 @@
         let subIDToBeBought = selectedSubmissionID;
         let priceOfSub = selectedSubmissionPrice;
         let gas = 0.01;
+
+        alert("subID: " + subIDToBeBought);
         //{ from: web3.eth.accounts[0] }
         contract.purchaseLogo(subIDToBeBought, { from: web3.eth.accounts[0], gas:1000000, value: web3.toWei(priceOfSub, "ether") } , (err, resp) => {
             if (err == null) {

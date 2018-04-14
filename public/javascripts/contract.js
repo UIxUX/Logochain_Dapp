@@ -1,6 +1,6 @@
 //Test only for now.
 
-metaFrontAddress = "0x3c184be2ffe6d8562c456b770c8a152fb54983fd";
+metaFrontAddress = "0xef4937a41022b32fc9408c14349f7e04b2138221";
 
 metaFrontAbi = [
     {
@@ -193,6 +193,15 @@ metaFrontAbi = [
                 "type": "bool"
             }
         ],
+        "payable": true,
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "constant": false,
+        "inputs": [],
+        "name": "pay",
+        "outputs": [],
         "payable": true,
         "stateMutability": "payable",
         "type": "function"

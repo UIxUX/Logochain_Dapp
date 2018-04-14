@@ -294,7 +294,7 @@ app.get('/api/getpurchasedata/:id', function(req, res) {
         var recipientid = submission.author;
         console.log("****recipientid " + recipientid);
 
-        data.purchase.price = submission.price;
+        data.purchase.price = submission.price  * 1000000000000000000;
 
         //Find User with SubmissionAuthorID
         User.findById( recipientid, function(err, user) {
@@ -317,7 +317,73 @@ app.get('/api/getpurchasedata/:id', function(req, res) {
 });
 
 
+//GET JSON
+app.get('/api/getallpurchasedata/:id', function(req, res) {
+    var id = req.params.id;
 
+    var data = {
+        "purchase": {
+            "recipient": "",
+            "id": id,
+            "price" : 0,
+            "voters": [],
+            "endprice" : 0,
+            "rewardeachvoter": 0
+        }
+    };
+
+    //Find Submission with SubmissionID
+    Submission.findOne({'_id' : id}, function(err, submission) {
+
+        if (err) return res.send("Not found");
+
+        var recipientid = submission.author;
+        console.log("****recipientid " + recipientid);
+
+        data.purchase.price = submission.price * 1000000000000000000;
+
+        //Find User with SubmissionAuthorID
+        User.findById( recipientid, function(err, user) {
+
+            if (err)
+                return res.send("Not found");
+
+            if (user) {
+                var recipientwalletid = user.walletID;
+
+                data.purchase.recipient = recipientwalletid;
+
+                var upvoterwalletids = [];
+
+                //Find voter wallets
+                for (var i = 0; i < submission.upvotes.length; i++) {
+                    //console.log("upvoter walletID: " + submission.upvotes[i].walletID);
+                    upvoterwalletids.push(submission.upvotes[i].walletID);
+                }
+
+                console.log("upvoterwalletids : " + upvoterwalletids);
+                data.purchase.voters = upvoterwalletids;
+
+                if (data.purchase.voters.length > 0) {
+                    var endprice = data.purchase.price * Math.pow(1.01, data.purchase.voters.length);
+                    data.purchase.endprice = endprice;
+                } else {
+                    var endprice = data.purchase.price;
+                    data.purchase.endprice = endprice;
+                }
+
+                data.purchase.rewardeachvoter = ( (data.purchase.endprice - data.purchase.price) / data.purchase.voters.length ) * 1000000000000000000;
+
+
+
+                return res.send(data);
+
+            } else {
+                return res.send("Not found");
+            }
+        });
+    });
+});
 
 
 
