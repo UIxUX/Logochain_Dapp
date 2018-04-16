@@ -1,6 +1,6 @@
 //Test only for now.
 
-metaFrontAddress = "0xef4937a41022b32fc9408c14349f7e04b2138221";
+metaFrontAddress = "0xce98b00d9ba85bb78053a989d3fd2b368502872b";
 
 metaFrontAbi = [
     {

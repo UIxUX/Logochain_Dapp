@@ -141,8 +141,8 @@ app.post('/upvote', function(req, res) {
                     }
                 }
 
-                var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() } }, $set: { 'price': price * Math.pow(1.01, amountVotes+1) }};
-                console.log("NEW PRICE: " + price * Math.pow(1.01, amountVotes+1));
+                var update = {$push: {"upvotes": { 'walletID':  "" + upvoterWalletID, 'createdAt': Date.now() } }, $set: { 'price': price  }}; //* Math.pow(1.01, amountVotes+1)
+                console.log("NEW PRICE: " + price );
 
                 Submission
                     .findOneAndUpdate(query, update, options).exec(function(err, sub){
@@ -328,7 +328,8 @@ app.get('/api/getallpurchasedata/:id', function(req, res) {
             "price" : 0,
             "voters": [],
             "endprice" : 0,
-            "rewardeachvoter": 0
+            "rewardeachvoter": 0,
+            "authorvoterstring": "",
         }
     };
 
@@ -355,11 +356,18 @@ app.get('/api/getallpurchasedata/:id', function(req, res) {
 
                 var upvoterwalletids = [];
 
+                var authorvoterstring = "";
+
+                authorvoterstring += recipientwalletid + " ";
+
                 //Find voter wallets
                 for (var i = 0; i < submission.upvotes.length; i++) {
                     //console.log("upvoter walletID: " + submission.upvotes[i].walletID);
                     upvoterwalletids.push(submission.upvotes[i].walletID);
+                    authorvoterstring += submission.upvotes[i].walletID + " ";
                 }
+
+                data.purchase.authorvoterstring = authorvoterstring;
 
                 console.log("upvoterwalletids : " + upvoterwalletids);
                 data.purchase.voters = upvoterwalletids;

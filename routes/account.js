@@ -33,7 +33,58 @@ router.get('/', isLoggedIn, function(req, res) {
                 console.log("couldnt find uploaded submissions.");
             }
 
-            res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs} );
+
+
+
+
+            //Endprices of Upvoted Subs
+            var endpricesupvotedsubs = [];
+            for (var i = 0; i < upvotedSubs.length; i++) {
+                //console.log("upvoter walletID: " + submission.upvotes[i].walletID);
+                if (upvotedSubs[i].upvotes.length > 0) {
+
+                    var endprice = upvotedSubs[i].price * Math.pow(1.01, upvotedSubs[i].upvotes.length );
+                    endpricesupvotedsubs.push( endprice );
+
+                } else {
+                    endpricesupvotedsubs.push( upvotedSubs[i].price );
+                }
+            }
+
+            //Endprices of Uploaded Subs
+            var endpricesuploadedsubs = [];
+            for (var i = 0; i < uploadedSubs.length; i++) {
+                //console.log("upvoter walletID: " + submission.upvotes[i].walletID);
+                if (uploadedSubs[i].upvotes.length > 0) {
+
+                    var endprice = uploadedSubs[i].price * Math.pow(1.01, uploadedSubs[i].upvotes.length );
+                    endpricesuploadedsubs.push( endprice );
+
+                } else {
+                    endpricesuploadedsubs.push( uploadedSubs[i].price );
+                }
+            }
+
+            //Endprices of Bought Subs
+            var endpricesboughtsubs = [];
+            for (var i = 0; i < boughtSubs.length; i++) {
+                //console.log("upvoter walletID: " + submission.upvotes[i].walletID);
+                if (boughtSubs[i].upvotes.length > 0) {
+
+                    var endprice = boughtSubs[i].price * Math.pow(1.01, boughtSubs[i].upvotes.length );
+                    endpricesboughtsubs.push( endprice );
+
+                } else {
+                    endpricesboughtsubs.push( boughtSubs[i].price );
+                }
+            }
+
+
+
+
+
+
+            res.render('account', {wallet_id: req.user.walletID, email: req.user.email, password: '••••••', username: req.user.username, upvotedSubs: upvotedSubs, boughtSubs: boughtSubs, uploadedSubs: uploadedSubs, endpricesupvotedsubs: endpricesupvotedsubs, endpricesuploadedsubs: endpricesuploadedsubs, endpricesboughtsubs: endpricesboughtsubs} );
         });
 
 

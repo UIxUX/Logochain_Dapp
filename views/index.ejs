@@ -130,11 +130,11 @@
         <li class="submission round">
           <img class="submissionImg inSubmissionElement" width="90" height="90" class="img-circle" src="data:image/jpeg;base64, <%=submissions[i].icon.data %>" alt="Your Logo Alt" >
           <h4><%=submissions[i].title %></h4>
-          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" > <%=submissions[i].price %> Ether </h6>
+          <h6 class=""><img class="inSubmissionElement" width="8" height="14" class="" src="/images/ethIconSmall.png" alt="Your Logo Alt" > <%=endprices[i] %> Ether </h6>
           <button class="btn upvoteButton round inSubmissionElement">▴ <%=submissions[i].upvotes.length %> Upvote</button>
           <button class="btn buyButton round inSubmissionElement">Buy</button>
           <div class="invisible submissionid"><%=submissions[i]._id %></div>
-          <div class="invisible submissionprice"><%=submissions[i].price %></div>
+          <div class="invisible submissionprice"><%=endprices[i] %></div>
         </li>
           <%} %>
         <!-- Test -->
